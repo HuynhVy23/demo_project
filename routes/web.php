@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoaDonController;
+use App\Http\Controllers\Catagory;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,37 +35,31 @@ Route::group(['prefix'=>'invoice'],function(){
 
 Route::group(['prefix'=>'product'],function(){
     Route::get('/', function () {
-        return view('Product');
+        return view('Product.Show');
     })->name('Product');
     Route::get('/add', function () {
-        return view('AddProduct');
+        return view('Product.Add');
     })->name('AddProduct');
     Route::get('/update', function () {
-        return view('UpdateProduct');
+        return view('Product.Update');
     })->name('UpdateProduct');
 });
 
 Route::group(['prefix'=>'catagory'],function(){
-    Route::get('/', function () {
-        return view('Catagory');
-    })->name('Catagory');
-    Route::get('/update', function () {
-        return view('UpdateCatagory');
-    })->name('UpdateCatagory');
-    Route::get('/add', function () {
-        return view('AddCatagory');
-    })->name('AddCatagory');
+    Route::get('/',[Catagory::class,'show'])->name('Catagory');
+    Route::get('/update',[Catagory::class,'update'])->name('UpdateCatagory');
+    Route::get('/add',[Catagory::class,'create'])->name('AddCatagory');
 
 
 });Route::group(['prefix'=>'Account'],function(){
     Route::get('/', function () {
-        return view('Account');
+        return view('Account.show');
     })->name('Account');
     Route::get('/update', function () {
-        return view('UpdateAccount');
+        return view('Account.Update');
     })->name('UpdateAccount');
     Route::get('/add', function () {
-        return view('AddAccount');
+        return view('Account.Add');
     })->name('AddAccount');
 });
 
@@ -73,3 +68,5 @@ Route::group(['prefix'=>'comment'],function(){
         return view('Comment');
     })->name('Comment');
 });
+
+Route::post('addCatagory',[Catagory::class,'store'])->name('insertCatagory') ;

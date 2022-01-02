@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +12,7 @@ class CreateCTHoaDonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('c_t__hoa_dons', function (Blueprint $table) {
+        Schema::create('ct_hoa_dons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('so_luong');
             $table->integer('don_gia');
@@ -29,6 +28,6 @@ class CreateCTHoaDonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_t__hoa_dons');
+        Schema::dropIfExists('ct_hoa_dons');
     }
 }

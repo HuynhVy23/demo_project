@@ -19,14 +19,18 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
-                                                                    <tr>
-                                <td>1</td>
-                                <td>Short Story</td>
-                                <td><a class="btn btn-info btn-rounded" href="{{ route('UpdateCatagory') }}"> Update</a></td>
+                            @foreach ($loaisp as $loai)
+                            <tr>
+                                <td>{{ $loai->id }}</td>
+                                <td>{{ $loai->ten_loai }}</td>
+                                <td>{{ $loai->hinh_anh }}</td>
+                                <td><a class="btn btn-info btn-rounded" href=""> Update</a></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
             </div>
