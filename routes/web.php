@@ -47,8 +47,11 @@ Route::group(['prefix'=>'product'],function(){
 
 Route::group(['prefix'=>'catagory'],function(){
     Route::get('/',[Catagory::class,'show'])->name('Catagory');
-    Route::get('/update',[Catagory::class,'update'])->name('UpdateCatagory');
+    Route::get('/update',[Catagory::class,'edit','loaiSanPham'])->name('UpdateCatagory');
     Route::get('/add',[Catagory::class,'create'])->name('AddCatagory');
+    Route::post('adddata',[Catagory::class,'store'])->name('InsertCatagory') ;
+    Route::post('updatedata',[Catagory::class,'update'])->name('UpCatagory') ;
+
 
 
 });Route::group(['prefix'=>'Account'],function(){
@@ -69,4 +72,3 @@ Route::group(['prefix'=>'comment'],function(){
     })->name('Comment');
 });
 
-Route::post('addCatagory',[Catagory::class,'store'])->name('insertCatagory') ;

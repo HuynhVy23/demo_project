@@ -28,7 +28,7 @@
                                 <td>{{ $loai->id }}</td>
                                 <td>{{ $loai->ten_loai }}</td>
                                 <td>{{ $loai->hinh_anh }}</td>
-                                <td><a class="btn btn-info btn-rounded" href=""> Update</a></td>
+                                <td><a class="btn btn-info btn-rounded" href="{{ route('UpdateCatagory',['loaiSanPham'=>$loai])}}"> Update</a></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -10,9 +10,11 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-            <form action="" method="POST">
-            ID  :<pre></pre><input type="text" value="1" name="maloai" readonly></br></br>
-            Name  :<pre></pre><input type="text" value="Short Story" name="tenloai"></br></br>
+            <form action="{{ route('UpCatagory') }}" method="POST">
+                @csrf
+            ID  :<pre></pre><input type="text" value="{{ $loaisp->id }}" name="maloai" readonly></br></br>{
+            Name  :<pre></pre><input type="text" value="{{ $loaisp->tenloai }}" name="tenloai"></br></br>
+            Image  :<pre></pre><input type="text" value="{{ $loaisp->hinhanh }}" name="hinhanh"></br></br>
                <input class="btn btn-success" type="submit" name="submit" value="Submit">
                <input class="btn btn-info" type="submit" name="submitD" value="Delete">
     </form>

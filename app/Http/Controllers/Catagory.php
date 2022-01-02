@@ -39,4 +39,8 @@ class Catagory extends Controller
         return Redirect::route('Catagory',['loaisp'=>$loaiSanPham]);
     }
 
+    public function edit(LoaiSanPham $loaiSanPham)
+    {
+        return view('Catagory.Update',['loaisp'=>$loaiSanPham]);
+    }
 }
