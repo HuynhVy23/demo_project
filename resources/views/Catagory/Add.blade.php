@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-        <form action="{{ route('InsertCatagory') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('catagory.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 Name : <pre></pre><input type="text" name="tenloai"/><em style="color:tomato">*</em></br></br>
 Image : <pre></pre><input type="text" name="hinhanh"/><em style="color:tomato">*</em></br></br>

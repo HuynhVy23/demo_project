@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-        <a type="submit" class="btn btn-primary btn-rounded m-b-10 m-l-5" href="{{ route('AddCatagory') }}">Add New Catagory</a>
+        <a type="submit" class="btn btn-primary btn-rounded m-b-10 m-l-5" href="{{ route('catagory.create') }}">Add New Catagory</a>
             <div class="card-body">
             <div class="table-responsive">
                     <table class="table table-striped">
@@ -27,8 +27,8 @@
                             <tr>
                                 <td>{{ $loai->id }}</td>
                                 <td>{{ $loai->ten_loai }}</td>
-                                <td>{{ $loai->hinh_anh }}</td>
-                                <td><a class="btn btn-info btn-rounded" href="{{ route('UpdateCatagory',['loaiSanPham'=>$loai])}}"> Update</a></td>
+                                <td><img src="{{ url('images/catagory/'.$loai->hinh_anh) }}"width="100px" height="100px"> </td>
+                                <td><a class="btn btn-info btn-rounded" href="{{ route('catagory.edit',$loai->id)}}"> Update</a></td>
                             </tr>
                             @endforeach
                         </tbody>

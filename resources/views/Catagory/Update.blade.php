@@ -10,11 +10,12 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-            <form action="{{ route('UpCatagory') }}" method="POST">
+            <form action="{{ route('catagory.update',$loaisp->id) }}" method="POST">
                 @csrf
-            ID  :<pre></pre><input type="text" value="{{ $loaisp->id }}" name="maloai" readonly></br></br>{
-            Name  :<pre></pre><input type="text" value="{{ $loaisp->tenloai }}" name="tenloai"></br></br>
-            Image  :<pre></pre><input type="text" value="{{ $loaisp->hinhanh }}" name="hinhanh"></br></br>
+                @method('PATCH')
+            ID  :<pre></pre><input type="text" value="{{ $loaisp->id }}" name="maloai" readonly></br></br>
+            Name  :<pre></pre><input type="text" value="{{ $loaisp->ten_loai }}" name="tenloai"></br></br>
+            Image  :<pre></pre><input type="text" value="{{ $loaisp->hinh_anh }}" name="hinhanh"></br></br>
                <input class="btn btn-success" type="submit" name="submit" value="Submit">
                <input class="btn btn-info" type="submit" name="submitD" value="Delete">
     </form>

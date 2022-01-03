@@ -24,23 +24,26 @@ class Catagory extends Controller
         return Redirect::route('Catagory',['loaisp'=>$loaisp]);
     }
 
-    public function show()
+    public function index()
     {
         $loaiSanPham=LoaiSanPham::all();
-        return view('Catagory.Show',['loaisp'=>$loaiSanPham]);
+        return view('Catagory.Index',['loaisp'=>$loaiSanPham]);
     }
 
-    public function update(Request $request,LoaiSanPham $loaiSanPham)
+    public function update(Request $request,$id)
     {
+        $loaiSanPham=LoaiSanPham::find($id);
         $loaiSanPham->fill([
             'ten_loai'=>$request->input('tenloai'),
+            'hinh_anh'=>$request->input('hinhanh')
         ]);
         $loaiSanPham->save();
-        return Redirect::route('Catagory',['loaisp'=>$loaiSanPham]);
+        return Redirect::route('catagory.index');
     }
 
-    public function edit(LoaiSanPham $loaiSanPham)
+    public function edit($id)
     {
-        return view('Catagory.Update',['loaisp'=>$loaiSanPham]);
+        $loaisp=LoaiSanPham::find($id);
+        return view('Catagory.Update',['loaisp'=>$loaisp]);
     }
 }

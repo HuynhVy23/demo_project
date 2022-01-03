@@ -85,7 +85,7 @@
                         <li class="nav-devider"></li>
                         <li><a aria-expanded="false" href="{{ route('Invoice') }}"><i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i><span class="hide-menu">Invoice </span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('Product') }}"><i class="fa fa fa-book"></i><span class="hide-menu ">Product</span></a></li>
-                        <li ><a aria-expanded="false" href="{{ route('Catagory') }}"><i class="mdi mdi-inbox font-18 align-middle mr-2"></i><span class="hide-menu">Category</span></a></li>
+                        <li ><a aria-expanded="false" href="{{ route('catagory.index') }}"><i class="mdi mdi-inbox font-18 align-middle mr-2"></i><span class="hide-menu">Category</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('Account') }}"><i class="fa fa-user"></i><span class="hide-menu">Account</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('Comment') }}"><i class="fa fa-comment"></i><span class="hide-menu">Comment</span></a></li>
                         

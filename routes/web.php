@@ -35,7 +35,7 @@ Route::group(['prefix'=>'invoice'],function(){
 
 Route::group(['prefix'=>'product'],function(){
     Route::get('/', function () {
-        return view('Product.Show');
+        return view('Product.Index');
     })->name('Product');
     Route::get('/add', function () {
         return view('Product.Add');
@@ -45,18 +45,11 @@ Route::group(['prefix'=>'product'],function(){
     })->name('UpdateProduct');
 });
 
-Route::group(['prefix'=>'catagory'],function(){
-    Route::get('/',[Catagory::class,'show'])->name('Catagory');
-    Route::get('/update',[Catagory::class,'edit','loaiSanPham'])->name('UpdateCatagory');
-    Route::get('/add',[Catagory::class,'create'])->name('AddCatagory');
-    Route::post('adddata',[Catagory::class,'store'])->name('InsertCatagory') ;
-    Route::post('updatedata',[Catagory::class,'update'])->name('UpCatagory') ;
+Route::resource('catagory', Catagory::class)->only(['index','create','store','edit','update']);
 
-
-
-});Route::group(['prefix'=>'Account'],function(){
+Route::group(['prefix'=>'Account'],function(){
     Route::get('/', function () {
-        return view('Account.show');
+        return view('Account.Index');
     })->name('Account');
     Route::get('/update', function () {
         return view('Account.Update');
