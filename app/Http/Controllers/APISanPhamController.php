@@ -35,9 +35,10 @@ class APISanPhamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($loaisp)
     {
-        //
+        $lstSanPham=SanPham::where('loai_san_pham_id','=',$loaisp)->get();
+        return $lstSanPham;
     }
 
     /**

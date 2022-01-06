@@ -20,6 +20,7 @@ class CreateSanPhamsTable extends Migration
             $table->integer('so_luong');
             $table->integer('don_gia');
             $table->string('hinh_anh');
+            $table->integer('loai_san_pham_id');
             $table->timestamps();
             $table->softDeletes();
         });
