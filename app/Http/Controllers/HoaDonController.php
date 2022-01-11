@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HoaDon;
-use App\Http\Requests\StoreHoaDonRequest;
-use App\Http\Requests\UpdateHoaDonRequest;
+use App\Models\CTHoaDonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
@@ -21,8 +20,7 @@ class HoaDonController extends Controller
     public function index()
     {
        $lstHoaDon = HoaDon::all();
-       
-       return view('Invoice',['lstHoaDon'=>$lstHoaDon]);
+       return view('Invoice.Invoice',['lstHoaDon'=>$lstHoaDon]);
     }
 
     /**
@@ -54,8 +52,7 @@ class HoaDonController extends Controller
      */
     public function show(HoaDon $hoaDon)
     {
-        $this->fixImage($hoaDon);
-        return view('Invoice',['hoaDon'=>$hoaDon]);
+        
     }
 
     /**
@@ -66,7 +63,7 @@ class HoaDonController extends Controller
      */
     public function edit(HoaDon $hoaDon)
     {
-        return view('UpdateInvoice',['hoaDon'=>$hoaDon]);
+        
     }
 
     /**
@@ -78,16 +75,7 @@ class HoaDonController extends Controller
      */
     public function update(UpdateHoaDonRequest $request, HoaDon $hoaDon)
     {
-        $hoaDon->fill([
-            'id'=>$request->input('id'),
-            'ngay_lap'=>$request->input('ngaylap'),
-            'dia_chi'=>$request->input('diachi'),
-            'so_dien_thoai'=>$request->input('sodienthoai'),
-            'ghi_chu'=>$request->input('ghichu'),
-            'tong_tien'=>$request->input('tongtien')
-        ]);
-        $hoaDon->save();
-        return Redirect::route('hoaDon.show',['hoaDon'=>$hoaDon] );
+        
     }
 
     /**

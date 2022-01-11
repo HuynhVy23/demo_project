@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\KhachHang;
 use Illuminate\Http\Request;
 
 class APIKhachHangController extends Controller
@@ -13,7 +13,8 @@ class APIKhachHangController extends Controller
      */
     public function index()
     {
-        //
+        $lstKhachHang = KhachHang::all();
+        return $lstKhachHang;
     }
 
     /**
@@ -33,9 +34,10 @@ class APIKhachHangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ten_dang_nhap)
     {
-        //
+        $lstKhachHang=KhachHang::where('ten_dang_nhap','=',$ten_dang_nhap)->get();
+        return $lstKhachHang;
     }
 
     /**

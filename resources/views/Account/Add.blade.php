@@ -11,19 +11,15 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-        <form action="" method="post" enctype="multipart/form-data">
-Username : <input type="text" name="txtUsername"/><em style="color:tomato">*</em></br></br>
-Password : <input type="password" name="txtMatKhau"/><em style="color:tomato">*</em></br></br>
-Full name : <input type="text" name="txtHoTen"/><em style="color:tomato">*</em></br></br>
-Address : <input type="text" name="txtDiaChi"/></br></br>
-Email : <input type="email" name="txtEmail"/></br></br>
-Phone : <input type="text" name="txtDienThoai" onkeypress='return event.charCode>=48 && event.charCode<=57'/></br></br>
-Sex : <input type="radio" name="gender" value="Male" checked="checked" id="Male"/>Male
-<input type="radio" name="gender" value="Female" id="Female"/>Female</br></br>
-
-<label for="file">Avatar : </label>
-<input type="file" name="file" id="file"/>
-<br/>
+        <form action="{{ route('account.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+Username : <input type="text" name="Username"/><em style="color:tomato">*</em></br></br>
+Password : <input type="password" name="MatKhau"/><em style="color:tomato">*</em></br></br>
+Full name : <input type="text" name="HoTen"/><em style="color:tomato">*</em></br></br>
+Address : <input type="text" name="DiaChi"/></br></br>
+Email : <input type="email" name="Email"/></br></br>
+Phone : <input type="text" name="DienThoai" onkeypress='return event.charCode>=48 && event.charCode<=57'/></br></br>
+Avatar : <input type="file" name="HinhAnh" accept="img/*"/><em style="color:tomato">*</em></br></br>
 <input class="btn btn-success" type="submit" name="submitTK" value="Submit"/></br></br>
 <label style="color: red;"></label>
         </form>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\Catagory;
+use App\Http\Controllers\KhachHangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,17 +48,7 @@ Route::group(['prefix'=>'product'],function(){
 
 Route::resource('catagory', Catagory::class)->only(['index','create','store','edit','update']);
 
-Route::group(['prefix'=>'Account'],function(){
-    Route::get('/', function () {
-        return view('Account.Index');
-    })->name('Account');
-    Route::get('/update', function () {
-        return view('Account.Update');
-    })->name('UpdateAccount');
-    Route::get('/add', function () {
-        return view('Account.Add');
-    })->name('AddAccount');
-});
+Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
 
 Route::group(['prefix'=>'comment'],function(){
     Route::get('/', function () {

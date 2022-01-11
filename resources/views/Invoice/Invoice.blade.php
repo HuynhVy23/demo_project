@@ -17,36 +17,23 @@
                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                            <th>ID Invoice</th>
                                 <th>Date</th>
-                                <th>Username</th>
-                                <th>Full Name</th>
+                                <th>Address</th>
                                 <th>Phone</th>
-                                <th>Delivery Address</th>
-                                <th>Status</th>
-                                <th>Shipping Unit</th>
-                                <th>Detail</th>
-                                <th>Link Update</th>
+                                <th>Note</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         
                             <tbody>
                                 @foreach ($lstHoaDon as $hd )
                                                         <tr>
-                                <td>{{ $hd->id }}</td>
                                 <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->so_dien_thoai }}</td>
                                 <td>{{ $hd->dia_chi }}</td>
-                                <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->ngay_lap }}</td>
-                                <td><a class="btn btn-warning btn-rounded" href="{{ route('InvoiceDetail') }}"> More</a></td>
-                                <td><form action="{{ route('UpdateInvoice',['hoaDon'=>$hd]) }}" method="GET" >
-                                    <input type="text" value="{{ $hd->id }}" name="mahd" readonly>
-                                    <input class="btn btn-success" type="submit" name="submit" value="Submit">
-                                    {{-- <a class="btn btn-info btn-rounded" href="{{ route('UpdateInvoice',['hoaDon'=>$hd]) }}"> Update</a> --}}
-                                    </form></td>
+                                <td>{{ $hd->so_dien_thoai }}</td>
+                                <td>{{ $hd->ghi_chu }}</td>
+                                <td>{{ $hd->tong_tien }}</td>
+                                <td><a class="btn btn-warning btn-rounded" href=""> More</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
