@@ -10,7 +10,7 @@
     <div class="col-6">
         <div class="card">
         <div class="button-list">
-            <form action="{{ route('account.update',$khachHang->id) }}" method="POST">
+            <form action="{{ route('account.update',$khachHang->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 Username : <input type="text" name="Username" value="{{ $khachHang->ten_dang_nhap }}"/><em style="color:tomato">*</em></br></br>
@@ -20,7 +20,7 @@
     Email : <input type="email" name="Email" value="{{ $khachHang->email }}"/></br></br>
     Phone : <input type="text" name="DienThoai" value="{{ $khachHang->so_dien_thoai }}" onkeypress='return event.charCode>=48 && event.charCode<=57'/></br></br>
     Avatar  : <img style="width:100px;max-height:100px;object-fit:contain" src="{{ $khachHang->hinh_anh }}">
-    <input type="file" name="HinhAnh" accept="img/*"></br></br>
+    <input type="file" name="HinhAnh" accept="img/*"/></br></br>
     <input class="btn btn-success" type="submit" name="submitTK" value="Submit"/></br></br>
     <label style="color: red;"></label>
         </form>

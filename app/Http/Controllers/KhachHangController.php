@@ -62,7 +62,7 @@ class KhachHangController extends Controller
         ]);
         $khachHang->save();
         if($request->hasFile('HinhAnh')){
-            $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/'.$khachHang->id,'public');
+            $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/account/'.$khachHang->id,'public');
         }
         $khachHang->save();
         return Redirect::route('account.index',['khachHang'=>$khachHang]);
@@ -103,6 +103,13 @@ class KhachHangController extends Controller
     public function update(Request $request, $id)
     {
         $khachHang=KhachHang::find($id);
+
+        if($request->hasFile('HinhAnh')){
+            $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/account/'.$khachHang->id,'public');
+        }
+        else{
+            $khachHang->hinh_anh ='error';
+        }
         
         $khachHang->fill([
             'ten_dang_nhap' => $request->input('Username'),
@@ -111,13 +118,10 @@ class KhachHangController extends Controller
             'so_dien_thoai' => $request->input('DienThoai'),
             'email' => $request->input('Email'),
             'dia_chi' => $request->input('DiaChi'),
-            'hinh_anh' =>$request->input('HinhAnh'),
         ]);
         $khachHang->save();
-        if($request->hasFile('HinhAnh')){
-            $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/'.$khachHang->id,'public');
-        }
-        $khachHang->save();
+        
+        
         return Redirect::route('account.index',['khachHang'=>$khachHang]);
     }
 
