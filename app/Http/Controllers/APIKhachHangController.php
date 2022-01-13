@@ -25,7 +25,23 @@ class APIKhachHangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kh=new KhachHang();
+        $kh->fill([
+            'ten_dang_nhap'=>$request->post('_tendangnhap'),
+            'email'=>$request->post('_email'),
+            'mat_khau'=>$request->post('_matkhau'),
+            'ho_ten'=>$request->post('_hoten'),
+            'so_dien_thoai'=>$request->post('_sdt'),
+            'dia_chi'=>$request->post('_diachi'),
+            'hinh_anh'=>'',
+        ]);
+        if($kh->save()){
+            return response()->json([
+                'success'=>true
+            ]);
+        }else{
+return response()->json(['success'=>false]);
+        };
     }
 
     /**

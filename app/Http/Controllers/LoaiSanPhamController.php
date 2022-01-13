@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\LoaiSanPham;
-use App\Http\Requests\StoreLoaiSanPhamRequest;
-use App\Http\Requests\UpdateLoaiSanPhamRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class LoaiSanPhamController extends Controller
 {
+    protected function fixImage(LoaiSanPham $loaiSanPham){
+        if(Storage::disk('public')->exists($loaiSanPham->hinh_anh)){
+            $loaiSanPham->hinh_anh = Storage::url($loaiSanPham->hinh_anh);
+        }else{
+            $loaiSanPham->hinh_anh = '/images/account/1.png';
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,11 @@ class LoaiSanPhamController extends Controller
      */
     public function index()
     {
-        //
+        $lstLoaiSanPham=LoaiSanPham::all();
+        foreach($lstLoaiSanPham as $lsp){
+            $this->fixImage($lsp);
+        }
+        return  view('Catagory.Index',['lstLoaiSanPham'=>$lstLoaiSanPham]);
     }
 
     /**
@@ -25,18 +37,28 @@ class LoaiSanPhamController extends Controller
      */
     public function create()
     {
-        //
+        $lstLoaiSanPham=LoaiSanPham::all();
+        return view('Catagory.Add')->with('lstLoaiSanPham',$lstLoaiSanPham);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLoaiSanPhamRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLoaiSanPhamRequest $request)
+    public function store(Request $request)
     {
-        //
+        $loaiSanPham=new LoaiSanPham;
+        $loaiSanPham->fill([
+            'ten_loai'=>$request->input('ten_loai'),
+            'hinh_anh'=>'',
+        ]);
+        if($request->hasFile('hinh_anh')){
+            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store('img/catagory/'.$loaiSanPham->id,'public');
+        }
+        $loaiSanPham->save();
+        return Redirect::route('catagory.index',['loaiSanPham'=>$loaiSanPham]);
     }
 
     /**
@@ -56,21 +78,33 @@ class LoaiSanPhamController extends Controller
      * @param  \App\Models\LoaiSanPham  $loaiSanPham
      * @return \Illuminate\Http\Response
      */
-    public function edit(LoaiSanPham $loaiSanPham)
+    public function edit($id)
     {
-        //
+        $loaiSanPham=LoaiSanPham::find($id);
+        $this->fixImage($loaiSanPham);
+        return view('Catagory.Update',['loaiSanPham'=>$loaiSanPham]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLoaiSanPhamRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @param  \App\Models\LoaiSanPham  $loaiSanPham
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLoaiSanPhamRequest $request, LoaiSanPham $loaiSanPham)
+    public function update(Request $request, $id)
     {
-        //
+        $loaiSanPham=LoaiSanPham::find($id);
+        if($request->hasFile('hinh_anh')){
+            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store('img/catagory/'.$loaiSanPham->id,'public');
+        }else{
+            $loaiSanPham->hinh_anh='error';
+        }
+        $loaiSanPham->fill([
+            'ten_loai'=>$request->input('ten_loai'),
+        ]);
+        $loaiSanPham->save();
+        return Redirect::route('catagory.index',['loaiSanPham'=>$loaiSanPham]);
     }
 
     /**
@@ -81,6 +115,7 @@ class LoaiSanPhamController extends Controller
      */
     public function destroy(LoaiSanPham $loaiSanPham)
     {
-        //
+        $loaiSanPham->delete();
+        return Redirect::route('catagory.index');
     }
 }

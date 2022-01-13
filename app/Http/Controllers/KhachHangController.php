@@ -15,8 +15,6 @@ class KhachHangController extends Controller
             $khachHang->hinh_anh = '/images/account/1.png';
         }
     }
-
-
     /**
      * Display a listing of the resource.
      *

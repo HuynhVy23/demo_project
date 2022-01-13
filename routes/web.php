@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\Catagory;
 use App\Http\Controllers\KhachHangController;
+use App\Http\Controllers\LoaiSanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::group(['prefix'=>'product'],function(){
     })->name('UpdateProduct');
 });
 
-Route::resource('catagory', Catagory::class)->only(['index','create','store','edit','update']);
+Route::resource('catagory', LoaiSanPhamController::class)->only(['index','create','store','edit','update']);
 
 Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
 

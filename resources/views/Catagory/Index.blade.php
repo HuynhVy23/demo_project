@@ -23,11 +23,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($loaisp as $loai)
+                            @foreach ($lstLoaiSanPham as $loai)
                             <tr>
                                 <td>{{ $loai->id }}</td>
                                 <td>{{ $loai->ten_loai }}</td>
-                                <td><img src="{{ url('images/catagory/'.$loai->hinh_anh) }}"width="100px" height="100px"> </td>
+                                <td><img src="{{ $loai->hinh_anh}}"width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('catagory.edit',$loai->id)}}"> Update</a></td>
                             </tr>
                             @endforeach

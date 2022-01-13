@@ -13,8 +13,8 @@
         <div class="button-list">
         <form action="{{ route('catagory.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-Name : <pre></pre><input type="text" name="tenloai"/><em style="color:tomato">*</em></br></br>
-Image : <pre></pre><input type="text" name="hinhanh"/><em style="color:tomato">*</em></br></br>
+Name : <pre></pre><input type="text" name="ten_loai"/><em style="color:tomato">*</em></br></br>
+Image : <pre></pre><input type="file" name="hinh_anh" accept="img/*"/><em style="color:tomato">*</em></br></br>
 <input class="btn btn-success" type="submit" name="submit" value="Submit"/></br></br>
 <label style="color: red;"></label>
         </form>
