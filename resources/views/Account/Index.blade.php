@@ -35,7 +35,7 @@
                                 <td>{{ $kh->so_dien_thoai }}</td>
                                 <td>{{ $kh->dia_chi }}</td>
                                 <td>{{ $kh->email }}</td>
-                                <td><img src="{{ $kh->hinh_anh }}"width="100px" height="100px"> </td>
+                                <td><img src="{{ $kh->hinh_anh }}" width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('account.edit',$kh->id)}}"> Update</a></td>
                             </tr>
                             @endforeach

@@ -10,7 +10,7 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-        <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="{{ route('AddProduct') }}">Add New Book</a>
+        <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="{{ route('product.create') }}">Add New Flower</a>
             <div class="card-body">
             <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">
@@ -18,22 +18,26 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Category</th>
                                 <th>Price</th>
-                                <th>Inventory Number</th>
+                                <th>Stock</th>
                                 <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
-                                                                    <tr>
-                                <td>1</td>
-                                <td>Toi thay hoa vang tren co xanh</td>
-                                <td>Short Story</td>
-                                <td>15000</td>
-                                <td>5</td>
-                                <td><img src=" "width="60px" height="100px"> </td>
-                                <td><a class="btn btn-info btn-rounded" href="{{ route('UpdateProduct') }}"> Update</a></td>
+                            @foreach ($lstSanPham as $sp)
+                            <tr>
+                                <td>{{ $sp->id }}</td>
+                                <td>{{ $sp->ten_san_pham }}</td>
+                                <td>{{ $sp->mo_ta }}</td>
+                                <td>{{ $sp->loaiSanPham->ten_loai }}</td>
+                                <td>{{ $sp->don_gia }}</td>
+                                <td>{{ $sp->so_luong }}</td>
+                                <td><img src="{{ $sp->hinh_anh }}" width="100px" height="100px"> </td>
+                                <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> Update</a></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
             </div>

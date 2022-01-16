@@ -105,9 +105,6 @@ class KhachHangController extends Controller
         if($request->hasFile('HinhAnh')){
             $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/account/'.$khachHang->id,'public');
         }
-        else{
-            $khachHang->hinh_anh ='error';
-        }
         
         $khachHang->fill([
             'ten_dang_nhap' => $request->input('Username'),

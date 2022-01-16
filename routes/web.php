@@ -5,6 +5,7 @@ use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\Catagory;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiSanPhamController;
+use App\Http\Controllers\SanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,17 +36,7 @@ Route::group(['prefix'=>'invoice'],function(){
     })->name('InvoiceDetail');
 });
 
-Route::group(['prefix'=>'product'],function(){
-    Route::get('/', function () {
-        return view('Product.Index');
-    })->name('Product');
-    Route::get('/add', function () {
-        return view('Product.Add');
-    })->name('AddProduct');
-    Route::get('/update', function () {
-        return view('Product.Update');
-    })->name('UpdateProduct');
-});
+Route::resource('product', SanPhamController::class)->only(['index','create','store','edit','update']);
 
 Route::resource('catagory', LoaiSanPhamController::class)->only(['index','create','store','edit','update']);
 

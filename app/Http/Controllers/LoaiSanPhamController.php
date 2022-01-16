@@ -96,7 +96,7 @@ class LoaiSanPhamController extends Controller
     {
         $loaiSanPham=LoaiSanPham::find($id);
         if($request->hasFile('hinh_anh')){
-            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store('img/catagory/'.$loaiSanPham->id,'public');
+            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store  ('img/catagory/'.$loaiSanPham->id,'public');
         }else{
             $loaiSanPham->hinh_anh='error';
         }

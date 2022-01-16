@@ -10,22 +10,29 @@
     <div class="col-6">
         <div class="card">
         <div class="button-list">
-                        <form action="" method="post" enctype="multipart/form-data">
-    
-                            <input type="hidden" name="txtMaSach" value="sgk001"/></br></br>
-                            <input type="text" name="txtHinhAnh" hidden='true' value=""/></br></br>
-                            Name Book: <input type="text" name="txtTenSach" value="Truyen tranh"/></br></br>
-                            Price : <input type="text" name="txtDonGia" value="5000"/></br></br>
-                            Page : <input type="text" name="txtSoTrang" value="79" /></br></br>
-                            Inventory : <input type="text" name="txtTonKho" value="10"/></br></br>
-                            <label for="file">Book Picture : </label>
-                            <img src="">
-                            <input type="file" name="file" id="file"/>
+                        <form action="{{ route('product.update',$sanPham->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+                            Name : <input type="text" name="ten_san_pham" value="{{ $sanPham->ten_san_pham }}"/></br></br>
+                            Description : <input type="text" name="mo_ta" value="{{ $sanPham->mo_ta }}"/></br></br>
+                            Catagory : <select name="ma_loai">
+                                <option value="">--Select catagory--</option>
+                                @foreach ($lstLoaiSanPham as $item)
+                                    <option value="{{ $item->id }}" @if($item->id==$sanPham->loai_san_pham_id) selected @endif>{{ $item->ten_loai }}</option>
+                                @endforeach
+                            </select></br></br>
+                            Price : <input type="text" name="don_gia" value="{{ $sanPham->don_gia }}"/></br></br>
+                            Stock : <input type="text" name="so_luong" value="{{ $sanPham->so_luong }}" /></br></br>
+                            <label for="file">Image : </label>
+                            <input type="file" name="hinh_anh" id="file"/>
                             <br/>
                             <input class="btn btn-primary btn-rounded m-b-10 m-l-5" type="submit" name="submit" value="Cập Nhật"/>
                         </form>
                         </div>
                     </div>
                 </div>
+                    <div class="card">
+                        <img src="{{ $sanPham->hinh_anh }}" width="500px" height="500px">
+                    </div>
 </div>
                 @stop
