@@ -21,7 +21,9 @@ class CreateKhachHangsTable extends Migration
             $table->string('so_dien_thoai');
             $table->string('email');
             $table->string('dia_chi');
-            $table->string('hinh_anh');
+            $table->integer('gioi_tinh');
+            $table->date('ngay_sinh');
+            $table->string('hinh_anh')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

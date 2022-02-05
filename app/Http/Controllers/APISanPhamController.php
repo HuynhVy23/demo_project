@@ -15,7 +15,9 @@ class APISanPhamController extends Controller
     public function index()
     {
         $lstSanPham=SanPham::all();
-        return $lstSanPham;
+        return json_encode([
+            'data'=>$lstSanPham
+        ]);
     }
 
     /**
@@ -64,4 +66,21 @@ class APISanPhamController extends Controller
         //
     }
 
+    public function trangchu()
+    {
+        $lstSanPham=SanPham::orderByDesc('so_luong')->take(4)->get();
+        return $lstSanPham;
+    }
+
+    public function sanphammoi()
+    {
+        $lstSanPham=SanPham::orderByDesc('created_at')->take(10)->get();
+        return $lstSanPham;
+    }
+
+    public function sanphambanchay()
+    {
+        $lstSanPham=SanPham::orderByDesc('created_at')->take(10)->get();
+        return $lstSanPham;
+    }
 }

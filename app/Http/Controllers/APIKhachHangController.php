@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\KhachHang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class APIKhachHangController extends Controller
 {
@@ -33,14 +34,19 @@ class APIKhachHangController extends Controller
             'ho_ten'=>$request->post('_hoten'),
             'so_dien_thoai'=>$request->post('_sdt'),
             'dia_chi'=>$request->post('_diachi'),
+            'gioi_tinh'=>$request->post('_gioitinh'),
+            'ngay_sinh'=>$request->post('_ngaysinh'),
             'hinh_anh'=>'',
         ]);
+        if($request->hasFile('_hinhanh')){
+            $kh->hinh_anh=$request->file('_hinhanh')->store('img/account'.$kh->id,'public');
+        }
         if($kh->save()){
             return response()->json([
                 'success'=>true
             ]);
         }else{
-return response()->json(['success'=>false]);
+            return response()->json(['success'=>false]);
         };
     }
 
@@ -50,11 +56,17 @@ return response()->json(['success'=>false]);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ten_dang_nhap)
+    public function show(Request $request)
+    {}
+
+    public function checkEmail(Request $request)
     {
-        $lstKhachHang=KhachHang::where('ten_dang_nhap','=',$ten_dang_nhap)->get();
-        return $lstKhachHang;
+        $khachHang=KhachHang::where('email','=',$request->post('_email'))->value('email');
+        return json_encode([
+            'data'=>$khachHang
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.

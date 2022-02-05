@@ -24,5 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('loaiSanPham',APILoaiSanPhamController::class);
 Route::apiResource('sanPham',APISanPhamController::class);
+Route::group(['prefix'=>'sanpham'],function(){
+    Route::get('trangchu',[APISanPhamController::class,'trangchu']);
+    Route::get('sanphammoi',[APISanPhamController::class,'sanphammoi']);
+    Route::get('sanphambanchay',[APISanPhamController::class,'sanphambanchay']);
+});
 Route::apiResource('trangThai',APITrangThaiController::class);
 Route::apiResource('khachHang',APIKhachHangController::class);
+Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);

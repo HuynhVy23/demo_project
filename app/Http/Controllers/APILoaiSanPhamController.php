@@ -15,7 +15,7 @@ class APILoaiSanPhamController extends Controller
     public function index()
     {
         $lstLoaiSanPham=LoaiSanPham::all();
-        return response()->json($lstLoaiSanPham,200);
+        return $lstLoaiSanPham;
     }
 
     /**
