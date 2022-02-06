@@ -15,6 +15,8 @@ class CreateGioHangsTable extends Migration
     {
         Schema::create('gio_hangs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_san_pham');
+            $table->integer('id_khach_hang');
             $table->integer('so_luong');
             $table->timestamps();
             $table->softDeletes();

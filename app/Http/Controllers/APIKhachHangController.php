@@ -90,4 +90,16 @@ class APIKhachHangController extends Controller
     {
         //
     }
+
+    public function login(Request $request){
+        if($acc = KhachHang::where('ten_dang_nhap','=',$request->post('_ten_dang_nhap'))->where('mat_khau','=',$request->post('_mat_khau'))->get())
+        {
+            return json_encode([
+                "data"=>$acc
+            ]);
+        }
+        else{
+            return 0;
+        }
+    }
 }
