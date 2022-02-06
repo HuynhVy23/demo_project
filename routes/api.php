@@ -32,3 +32,5 @@ Route::group(['prefix'=>'sanpham'],function(){
 Route::apiResource('trangThai',APITrangThaiController::class);
 Route::apiResource('khachHang',APIKhachHangController::class);
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
+Route::get('sp/ds',[APISanPhamController::class,'layds']);
+Route::post('login',[APIKhachHangController::class,'login']);
