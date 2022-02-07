@@ -36,6 +36,7 @@
                                 <td>{{ $sp->so_luong }}</td>
                                 <td><img src="{{ $sp->hinh_anh }}" width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> Update</a></td>
+                                <td><a class="btn btn-info btn-rounded" href=""> <i class="fa fa-trash"></i></a></i></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -52,11 +52,7 @@ class LoaiSanPhamController extends Controller
         $loaiSanPham=new LoaiSanPham;
         $loaiSanPham->fill([
             'ten_loai'=>$request->input('ten_loai'),
-            'hinh_anh'=>'',
         ]);
-        if($request->hasFile('hinh_anh')){
-            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store('img/catagory/'.$loaiSanPham->id,'public');
-        }
         $loaiSanPham->save();
         return Redirect::route('catagory.index',['loaiSanPham'=>$loaiSanPham]);
     }
@@ -95,11 +91,6 @@ class LoaiSanPhamController extends Controller
     public function update(Request $request, $id)
     {
         $loaiSanPham=LoaiSanPham::find($id);
-        if($request->hasFile('hinh_anh')){
-            $loaiSanPham->hinh_anh=$request->file('hinh_anh')->store  ('img/catagory/'.$loaiSanPham->id,'public');
-        }else{
-            $loaiSanPham->hinh_anh='error';
-        }
         $loaiSanPham->fill([
             'ten_loai'=>$request->input('ten_loai'),
         ]);

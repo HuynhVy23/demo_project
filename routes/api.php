@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIGioHangController;
 use App\Http\Controllers\APIKhachHangController;
 use App\Http\Controllers\APILoaiSanPhamController;
 use App\Http\Controllers\APISanPhamController;
@@ -31,5 +32,6 @@ Route::group(['prefix'=>'sanpham'],function(){
 });
 Route::apiResource('trangThai',APITrangThaiController::class);
 Route::apiResource('khachHang',APIKhachHangController::class);
+Route::apiResource('gioHang',APIGioHangController::class);
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
 Route::post('login',[APIKhachHangController::class,'login']);

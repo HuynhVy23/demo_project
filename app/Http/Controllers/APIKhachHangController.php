@@ -39,7 +39,7 @@ class APIKhachHangController extends Controller
             'hinh_anh'=>'',
         ]);
         if($request->hasFile('_hinhanh')){
-            $kh->hinh_anh=$request->file('_hinhanh')->store('img/account'.$kh->id,'public');
+            $kh->hinh_anh=$request->file('_hinhanh')->store('img/account/'.$kh->id,'public');
         }
         if($kh->save()){
             return response()->json([
@@ -92,7 +92,7 @@ class APIKhachHangController extends Controller
     }
 
     public function login(Request $request){
-        if($acc = KhachHang::where('ten_dang_nhap','=',$request->post('_ten_dang_nhap'))->where('mat_khau','=',$request->post('_mat_khau'))->get())
+        if($acc = KhachHang::where('email','=',$request->post('_email'))->where('mat_khau','=',$request->post('_mat_khau'))->get())
         {
             return json_encode([
                 "data"=>$acc

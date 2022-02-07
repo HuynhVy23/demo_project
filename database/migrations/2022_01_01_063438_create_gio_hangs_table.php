@@ -17,7 +17,7 @@ class CreateGioHangsTable extends Migration
             $table->increments('id');
             $table->integer('id_san_pham');
             $table->integer('id_khach_hang');
-            $table->integer('so_luong');
+            $table->integer('so_luong_mua');
             $table->timestamps();
             $table->softDeletes();
         });
