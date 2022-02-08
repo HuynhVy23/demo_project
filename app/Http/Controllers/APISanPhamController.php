@@ -83,4 +83,12 @@ class APISanPhamController extends Controller
         $lstSanPham=SanPham::orderByDesc('created_at')->take(10)->get();
         return $lstSanPham;
     }
+
+    public function layds(){
+        $ds = SanPham::all();
+        if(!empty($ds)){
+            return response()->json($ds,200);
+        }
+        return response()->json($ds,["Error"=>"Item Not Found"],404);
+    }
 }
