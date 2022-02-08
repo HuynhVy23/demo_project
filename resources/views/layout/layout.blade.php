@@ -33,11 +33,7 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href=../index.php>
-                        <!-- Logo icon -->
-                        <b><img src=../images/logoadmin.png alt="homepage" class="dark-logo" /></b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span><img src=../images/logo-03.png alt="homepage" class="dark-logo" /></span>
+                        <span><img src=../images/logo.png alt="homepage" class="dark-logo" height="80" width="150" /></span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -83,9 +79,9 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a aria-expanded="false" href="{{ route('Invoice') }}"><i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i><span class="hide-menu">Invoice </span></a></li>
-                        <li ><a aria-expanded="false" href="{{ route('product.index') }}"><i class="fa fa fa-book"></i><span class="hide-menu ">Product</span></a></li>
-                        <li ><a aria-expanded="false" href="{{ route('catagory.index') }}"><i class="mdi mdi-inbox font-18 align-middle mr-2"></i><span class="hide-menu">Category</span></a></li>
+                        <li><a aria-expanded="false" href="{{ route('Invoice') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Invoice </span></a></li>
+                        <li ><a aria-expanded="false" href="{{ route('product.index') }}"><i class="fa fa-envira"></i><span class="hide-menu ">Product</span></a></li>
+                        <li ><a aria-expanded="false" href="{{ route('catagory.index') }}"><i class="fa fa-leaf"></i><span class="hide-menu">Category</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('account.index') }}"><i class="fa fa-user"></i><span class="hide-menu">Account</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('Comment') }}"><i class="fa fa-comment"></i><span class="hide-menu">Comment</span></a></li>
                         

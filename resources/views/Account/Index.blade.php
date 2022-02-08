@@ -17,24 +17,22 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>Email</th>
                                 <th>Password</th>
                                 <th>Full Name</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>Email</th>
                                 <th>Avatar</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($lstKhachHang as $kh)
                             <tr>
-                                <td>{{ $kh->ten_dang_nhap }}</td>
+                                <td>{{ $kh->email }}</td>
                                 <td>{{ $kh->mat_khau }}</td>
                                 <td>{{ $kh->ho_ten }}</td>
                                 <td>{{ $kh->so_dien_thoai }}</td>
                                 <td>{{ $kh->dia_chi }}</td>
-                                <td>{{ $kh->email }}</td>
                                 <td><img src="{{ $kh->hinh_anh }}" width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('account.edit',$kh->id)}}"> Update</a></td>
                             </tr>

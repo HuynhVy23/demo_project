@@ -104,9 +104,10 @@ class LoaiSanPhamController extends Controller
      * @param  \App\Models\LoaiSanPham  $loaiSanPham
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LoaiSanPham $loaiSanPham)
+    public function destroy($id)
     {
+        $loaiSanPham=LoaiSanPham::find($id);
         $loaiSanPham->delete();
-        return Redirect::route('catagory.index');
+        return Redirect::route('product.index');
     }
 }

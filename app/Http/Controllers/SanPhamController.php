@@ -126,5 +126,7 @@ class SanPhamController extends Controller
     public function destroy($id)
     {
         $sanPham=SanPham::find($id);
+        $sanPham->delete();
+        return Redirect::route('product.index');
     }
 }
