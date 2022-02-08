@@ -36,6 +36,12 @@
                                 <td>{{ $sp->so_luong }}</td>
                                 <td><img src="{{ $sp->hinh_anh }}" width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> Update</a></td>
+                                <td><form method="post" action="{{route('product.destroy',$sp->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit"class="btn btn-info btn-rounded"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

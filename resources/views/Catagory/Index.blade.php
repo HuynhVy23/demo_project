@@ -19,7 +19,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,8 +26,13 @@
                             <tr>
                                 <td>{{ $loai->id }}</td>
                                 <td>{{ $loai->ten_loai }}</td>
-                                <td><img src="{{ $loai->hinh_anh}}"width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('catagory.edit',$loai->id)}}"> Update</a></td>
+                                <td><form method="post" action="{{route('catagory.destroy',$loai->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit"class="btn btn-info btn-rounded"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

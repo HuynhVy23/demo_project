@@ -36,9 +36,9 @@ Route::group(['prefix'=>'invoice'],function(){
     })->name('InvoiceDetail');
 });
 
-Route::resource('product', SanPhamController::class)->only(['index','create','store','edit','update']);
+Route::resource('product', SanPhamController::class)->except('show');
 
-Route::resource('catagory', LoaiSanPhamController::class)->only(['index','create','store','edit','update']);
+Route::resource('catagory', LoaiSanPhamController::class)->except('show');
 
 Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
 

@@ -39,7 +39,7 @@ class APIKhachHangController extends Controller
             'hinh_anh'=>'',
         ]);
         if($request->hasFile('_hinhanh')){
-            $kh->hinh_anh=$request->file('_hinhanh')->store('img/account'.$kh->id,'public');
+            $kh->hinh_anh=$request->file('_hinhanh')->store('img/account/'.$kh->id,'public');
         }
         if($kh->save()){
             return response()->json([

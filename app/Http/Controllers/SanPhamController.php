@@ -61,7 +61,7 @@ class SanPhamController extends Controller
          ]);
          $sanPham->save();
          if($request->hasFile('hinh_anh')){
-             $sanPham->hinh_anh=$request->file('hinh_anh')->store('img/product'.$sanPham->id,'public');
+             $sanPham->hinh_anh=$request->file('hinh_anh')->store('img/product/'.$sanPham->id,'public');
          }
          $sanPham->save();
          return Redirect::route('product.index');
@@ -103,7 +103,7 @@ class SanPhamController extends Controller
     {
         $sanPham=SanPham::find($id);
         if($request->hasFile('hinh_anh')){
-            $sanPham->hinh_anh=$request->file('hinh_anh')->store('img/product'.$sanPham->id,'public');
+            $sanPham->hinh_anh=$request->file('hinh_anh')->store('img/product/'.$sanPham->id,'public');
         }
         $sanPham->fill([
             'ten_san_pham'=>$request->input('ten_san_pham'),
@@ -123,8 +123,10 @@ class SanPhamController extends Controller
      * @param  \App\Models\SanPham  $sanPham
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SanPham $sanPham)
+    public function destroy($id)
     {
-        //
+        $sanPham=SanPham::find($id);
+        $sanPham->delete();
+        return Redirect::route('product.index');
     }
 }
