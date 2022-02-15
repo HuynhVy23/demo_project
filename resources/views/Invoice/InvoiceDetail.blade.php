@@ -18,18 +18,23 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Book</th>
+                                <th>ID</th>
+                                <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                                                                    <tr>
-                                <th scope="row">i</th>
-                                <td>Con chut gi de nho</td>
-                                <td>1</td>
-                                <td>95,000 VND</td>
+                            @for ($i=0; $i<count($cthoadon);$i++)
+                            <tr>
+                                <th scope="row">{{ $i+1 }}</th>
+                                <td>{{ $cthoadon[$i]->ten_san_pham }}</td>
+                                <td>{{ $cthoadon[$i]->so_luong }}</td>
+                                <td>{{ $cthoadon[$i]->don_gia }} VND</td>
+                                <td>{{ $cthoadon[$i]->tong }} VND</td>
                             </tr>
+                            @endfor
                                                                     </tbody>
                     </table>
                 </div>

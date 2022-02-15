@@ -16,7 +16,6 @@
                             Name : <input type="text" name="ten_san_pham" value="{{ $sanPham->ten_san_pham }}"/></br></br>
                             Description : <input type="text" name="mo_ta" value="{{ $sanPham->mo_ta }}"/></br></br>
                             Catagory : <select name="ma_loai">
-                                <option value="">--Select catagory--</option>
                                 @foreach ($lstLoaiSanPham as $item)
                                     <option value="{{ $item->id }}" @if($item->id==$sanPham->loai_san_pham_id) selected @endif>{{ $item->ten_loai }}</option>
                                 @endforeach

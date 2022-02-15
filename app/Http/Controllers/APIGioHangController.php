@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GioHang;
 use App\Models\SanPham;
+use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
 
 class APIGioHangController extends Controller
@@ -64,7 +65,7 @@ class APIGioHangController extends Controller
                     'so_luong_mua'=>$soluong,
                 ]);
                 $giohang->save();
-                return 'Success';
+                return  'Success';
              }
         }
     }
@@ -77,7 +78,7 @@ class APIGioHangController extends Controller
      */
     public function show($id)
     {
-        $giohang=GioHang::join('san_phams','san_phams.id','=','gio_hangs.id_san_pham')->where('id_khach_hang','=',$id)->get();
+        $giohang=GioHang::select('gio_hangs.id','id_san_pham','so_luong_mua','don_gia_sp','hinh_anh','ten_san_pham')->join('san_phams','san_phams.id','=','gio_hangs.id_san_pham')->where('id_khach_hang','=',$id)->get();
         return json_encode([
             'data'=>$giohang,
         ]);
@@ -91,7 +92,8 @@ class APIGioHangController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+
     }
 
     /**
@@ -101,9 +103,8 @@ class APIGioHangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        
     }
 
     /**
@@ -114,6 +115,24 @@ class APIGioHangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $giohang=GioHang::find($id);
+        $giohang->delete();
     }
+    public function quanlity(Request $request)
+    {
+        $giohang=GioHang::find($request->post('_id'));
+        $tonkho=SanPham::where('id','=',$giohang->id_san_pham)->value('so_luong');
+       if($request->post('_update')==1){
+           if($giohang->so_luong_mua==$tonkho){
+            $giohang->so_luong_mua=$tonkho;
+           }else{
+            $giohang->so_luong_mua+=1;
+           }
+       }else{
+        $giohang->so_luong_mua-=1;
+       }
+       $giohang->save();
+        return $giohang->so_luong_mua;
+    }
+
 }

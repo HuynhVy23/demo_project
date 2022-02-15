@@ -22,7 +22,7 @@ class KhachHangController extends Controller
      */
     public function index()
     {
-        $lstKhachHang=KhachHang::all();
+        $lstKhachHang=KhachHang::paginate(10);
         foreach($lstKhachHang as $kh){
             $this->fixImage($kh);
         }
@@ -130,5 +130,16 @@ class KhachHangController extends Controller
     {
         $khachHang->delete();
         return Redirect::route('account.index');
+    }
+
+    public function search(){
+        $lstKhachHang=KhachHang::where('email','like','%'.$_GET['key'].'%')
+        ->orwhere('ho_ten','like','%'.$_GET['key'].'%')
+        ->orwhere('so_dien_thoai','like','%'.$_GET['key'].'%')
+        ->paginate(10);
+        foreach($lstKhachHang as $kh){
+            $this->fixImage($kh);
+        }
+        return view('Account.Index',['lstKhachHang'=>$lstKhachHang]);
     }
 }

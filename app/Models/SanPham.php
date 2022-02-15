@@ -11,7 +11,8 @@ class SanPham extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded=[];
+    protected $guarded=[
+    ];
 
     public function loaiSanPham(){
         return $this->belongsTo(LoaiSanPham::class);

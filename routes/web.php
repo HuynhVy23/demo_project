@@ -20,31 +20,36 @@ use App\Http\Controllers\SanPhamController;
 
 Route::get('/', function () {
     return view('index');
-});
-Route::group(['prefix'=>'invoice'],function(){
-    // Route::get('/', function () {
-    //     return view('Invoice');
-    // })->name('Invoice');
-    Route::get('/',[HoaDonController::class,'index'])->name('Invoice');
-    Route::get('/update',[HoaDonController::class,'edit'])->name('UpdateInvoice');
-    Route::post('/edit',[HoaDonController::class,'update'])->name('hoaDon');
-    // Route::get('/update', function () {
-    //     return view('UpdateInvoice');
-    // })->name('UpdateInvoice');
-    Route::get('/detail', function () {
-        return view('InvoiceDetail');
-    })->name('InvoiceDetail');
-});
+})->name('Index');
+// Route::group(['prefix'=>'invoice'],function(){
+//     Route::get('/',[HoaDonController::class,'index'])->name('Invoice');
+//     Route::get('/update',[HoaDonController::class,'edit'])->name('UpdateInvoice');
+//     Route::get('/detail', function () {
+//         return view('Invoice.InvoiceDetail');
+//     })->name('InvoiceDetail');
+// });
+
+Route::resource('invoice', HoaDonController::class);
 
 Route::resource('product', SanPhamController::class)->except('show');
+Route::group(['prefix'=>'product'],function(){
+    Route::get('/search',[SanPhamController::class,'search'])->name('SearchProduct');
+});
 
 Route::resource('catagory', LoaiSanPhamController::class)->except('show');
+Route::group(['prefix'=>'catagory'],function(){
+    Route::post('/search',[LoaiSanPhamController::class,'search'])->name('SearchCategory');
+});
+
 
 Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
+Route::group(['prefix'=>'account'],function(){
+    Route::get('/search',[KhachHangController::class,'search'])->name('SearchAccount');
+});
 
 Route::group(['prefix'=>'comment'],function(){
     Route::get('/', function () {
-        return view('Comment');
+        return view('demo');
     })->name('Comment');
 });
 
