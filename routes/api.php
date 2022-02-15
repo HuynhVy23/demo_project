@@ -7,6 +7,9 @@ use App\Http\Controllers\APISanPhamController;
 use App\Http\Controllers\APITrangThaiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIHoaDonController;
+use App\Http\Controllers\APIChiTietHoaDonController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +39,9 @@ Route::apiResource('gioHang',APIGioHangController::class);
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
 Route::get('sp/ds',[APISanPhamController::class,'layds']);
 Route::post('login',[APIKhachHangController::class,'login']);
+
+Route::get('invoice/getInvoiceList' , [APIHoaDonController::class , 'index']);
+Route::post('invoice/newInvoice' , [APIHoaDonController::class , 'store']);
+Route::post('invoice/getInvoiceId' , [APIHoaDonController::class , 'getInvoiceId']);
+Route::post('invoiceDetail/newInvoiceDetail' , [APIChiTietHoaDonController::class ,'store'] );
+Route::post('invoice/getListInvoiceByAccountId',  [APIHoaDonController::class , 'getListInvoice']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Catagory;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiSanPhamController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,8 @@ use App\Http\Controllers\SanPhamController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+
 Route::group(['prefix'=>'invoice'],function(){
     // Route::get('/', function () {
     //     return view('Invoice');
@@ -36,15 +36,34 @@ Route::group(['prefix'=>'invoice'],function(){
     })->name('InvoiceDetail');
 });
 
-Route::resource('product', SanPhamController::class)->except('show');
 
-Route::resource('catagory', LoaiSanPhamController::class)->except('show');
 
-Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
 
-Route::group(['prefix'=>'comment'],function(){
+
+Route::get('login', [LoginController::class, 'showForm'])->name('login');
+Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+
+
+
+Route::middleware(['auth'])->group(function(){
+
     Route::get('/', function () {
-        return view('Comment');
-    })->name('Comment');
+        return view('index');
+    });
+
+    Route::resource('product', SanPhamController::class)->except('show');
+
+    Route::resource('catagory', LoaiSanPhamController::class)->except('show');
+
+    Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
+
+    Route::group(['prefix'=>'comment'],function(){
+        Route::get('/', function () {
+            return view('Comment');
+        })->name('Comment');
+    });
+
 });
+
+Route::get('logout',[LoginController::class, 'logOut'])->name('logout');
 

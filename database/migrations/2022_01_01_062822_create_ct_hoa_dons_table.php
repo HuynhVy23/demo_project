@@ -14,6 +14,7 @@ class CreateCTHoaDonsTable extends Migration
     {
         Schema::create('ct_hoa_dons', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_san_pham');
             $table->integer('so_luong');
             $table->integer('don_gia');
             $table->timestamps();

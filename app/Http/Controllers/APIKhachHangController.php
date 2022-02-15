@@ -92,7 +92,7 @@ class APIKhachHangController extends Controller
     }
 
     public function login(Request $request){
-        if($acc = KhachHang::where('email','=',$request->post('_email'))->where('mat_khau','=',$request->post('_mat_khau'))->get())
+        if($acc = KhachHang::where('email','=',$request->post('_email'))->orwhere('so_dien_thoai','=',$request->post('_email'))->where('mat_khau','=',$request->post('_mat_khau'))->get())
         {
             return json_encode([
                 "data"=>$acc
