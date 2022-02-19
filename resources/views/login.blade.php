@@ -54,7 +54,7 @@
             </div>
 
             <!-- Login Form -->
-            <form method="post" action="{{ route('login') }}">
+            <form method="post" action="{{ route('login') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email">
                 <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password">

@@ -77,7 +77,24 @@ class APIKhachHangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $khachHang = KhachHang::find($id);
+        // $khachHang->fill([
+        //     'email'=>$request->post('_email'),
+        //     'mat_khau'=>$request->post('_matkhau'),
+        //     'ho_ten'=>$request->post('_hoten'),
+        //     'so_dien_thoai'=>$request->post('_sdt'),
+        //     'dia_chi'=>$request->post('_diachi'),
+        //     'gioi_tinh'=>$request->post('_gioitinh'),
+        //     'ngay_sinh'=>$request->post('_ngaysinh'),
+        //     'hinh_anh'=>'',
+        // ]);
+        // if($kh->save()){
+        //     return response()->json([
+        //         'success'=>true
+        //     ]);
+        // }else{
+        //     return response()->json(['success'=>false]);
+        // };
     }
 
     /**

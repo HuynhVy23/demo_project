@@ -128,4 +128,13 @@ $(function() {
         $('a[data-action="close"]').on("click", function() {
             $(this).closest(".card").removeClass().slideUp("fast");
         });
+        $(document).ready(function(){
+$('#sort').on('change',function(){
+    var url=$(this).val();
+    if(url){
+        window.location=url;
+    }
+    return false;
+})
+        });
 });

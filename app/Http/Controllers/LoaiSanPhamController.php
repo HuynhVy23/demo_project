@@ -23,7 +23,16 @@ class LoaiSanPhamController extends Controller
      */
     public function index()
     {
-        $lstLoaiSanPham=LoaiSanPham::all();
+        $sort=isset($_GET['sort'])?$_GET['sort']:'';
+        $column='id';
+        $type='asc';
+         if($sort=='az'){
+            $column='ten_loai';
+        }else if($sort=='za'){
+            $column='ten_loai';
+            $type='desc';
+        }
+        $lstLoaiSanPham=LoaiSanPham::orderBy($column,$type)->get();
         foreach($lstLoaiSanPham as $lsp){
             $this->fixImage($lsp);
         }
@@ -108,6 +117,15 @@ class LoaiSanPhamController extends Controller
     {
         $loaiSanPham=LoaiSanPham::find($id);
         $loaiSanPham->delete();
-        return Redirect::route('product.index');
+        return Redirect::route('catagory.index');
+    }
+
+    public function search(Request $request)
+    {
+        $lstLoaiSanPham=LoaiSanPham::where('ten_loai','like','%'.$request->post('ten_loai').'%')->get();
+        foreach($lstLoaiSanPham as $sp){
+            $this->fixImage($sp);
+        }
+        return view('catagory.index',['lstLoaiSanPham'=>$lstLoaiSanPham]);
     }
 }

@@ -15,8 +15,8 @@ class APIHoaDonController extends Controller
      */
 
     public function getListInvoice (Request $request){
-        $HoaDon = HoaDon::join('ct_hoa_dons' , 'ct_hoa_dons.id' , '=' , 'hoa_dons.id')->join('san_phams' , 'san_phams.id' ,'=' , 'ct_hoa_dons.id_san_pham')
-        ->where('id_tai_khoan' , '=' , $request->post('_id_tai_khoan'))->select('hoa_dons.id', 'hoa_dons.tong_tien', 'hoa_dons.id_tai_khoan' , 'ct_hoa_dons.*' , 'san_phams.ten_san_pham' , 'san_phams.hinh_anh' )->get();
+        $HoaDon = HoaDon::join('c_t__hoa_dons' , 'c_t__hoa_dons.id_hoa_don' , '=' , 'hoa_dons.id')->join('san_phams' , 'san_phams.id' ,'=' , 'c_t__hoa_dons.id_san_pham')
+        ->where('email' , '=' , $request->post('email'))->select('hoa_dons.id', 'hoa_dons.tong_tien', 'hoa_dons.email' , 'c_t__hoa_dons.*' , 'san_phams.ten_san_pham' , 'san_phams.hinh_anh' )->get();
         
         return json_encode ([
             'data' => $HoaDon,
@@ -24,7 +24,7 @@ class APIHoaDonController extends Controller
     }
     public function getInvoiceId (Request $request)
     {
-        $HoaDonId = HoaDon::with('id')->where('id_tai_khoan' , '=' , $request->post('_id_tai_khoan'))->max('id');
+        $HoaDonId = HoaDon::with('id')->where('email' , '=' , $request->post('email'))->max('id');
         
         return json_encode([
             'id' => $HoaDonId,
@@ -33,7 +33,7 @@ class APIHoaDonController extends Controller
     }
     public function index()
     {
-        $HoaDon = HoaDon::join('ct_hoa_dons' , 'ct_hoa_dons.id' , '=' , 'hoa_dons.id')->get();
+        $HoaDon = HoaDon::join('c_t__hoa_dons' , 'c_t__hoa_dons.id_hoa_don' , '=' , 'hoa_dons.id')->get();
         
         return json_encode ([
             'data' => $HoaDon,
@@ -86,7 +86,7 @@ class APIHoaDonController extends Controller
         $HoaDon = new HoaDon;
         $HoaDon->fill([
          'id' => $id,
-         'id_tai_khoan' => $request->post('_id_tai_khoan'),
+         'email' => $request->post('email'),
          'ngay_lap' => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
          'dia_chi' => $request->post('_dia_chi'),
          'so_dien_thoai' => $request->post('_so_dien_thoai'),

@@ -1,5 +1,6 @@
 @extends('layout.layout')
 @section('container')
+
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-primary">Product</h3> </div>
@@ -11,6 +12,29 @@
         <div class="card">
         <div class="button-list">
         <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="{{ route('product.create') }}">Add New Flower</a>
+        <div class="row" style="padding: 15px">
+        <form action="{{ route('SearchProduct') }}" method="GET">
+            @csrf
+            <input type="text" name="ten_san_pham" placeholder="Name ">
+            <input type="text" name="mo_ta" placeholder="Description">
+            <select name="ma_loai">
+                <option value="">Select category</option>
+                @foreach ($lstLoaiSanPham as $item)
+                <option value="{{ $item->id }}">{{ $item->ten_loai }}</option>
+                @endforeach
+            </select>
+            <input type="text" name="gia_thap" placeholder="From(price)" >
+            <input type="text" name="gia_cao" placeholder="To(price)" >
+            <button type="submit"class="btn btn-info btn-rounded"><i class="fa fa-search"></i></button>
+        </form>
+                <select name="sort" id="sort" style="position:absolute;right:50px">
+                    <option value="">Select </option>
+                    <option value="{{ Request::url() }}?sort=giatang">Giá tăng dần</option>
+                    <option value="{{ Request::url() }}?sort=giagiam">Giá giảm dần</option>
+                    <option value="{{ Request::url() }}?sort=az">A->Z</option>
+                    <option value="{{ Request::url() }}?sort=za">Z->A</option>
+                </select>
+        </div>
             <div class="card-body">
             <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">
@@ -35,7 +59,7 @@
                                 <td>{{ $sp->don_gia }}</td>
                                 <td>{{ $sp->so_luong }}</td>
                                 <td><img src="{{ $sp->hinh_anh }}" width="100px" height="100px"> </td>
-                                <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> Update</a></td>
+                                <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> <i class="fa fa-edit"></a></td>
                                 <td><form method="post" action="{{route('product.destroy',$sp->id)}}">
                                     @csrf
                                     @method('DELETE')
@@ -46,7 +70,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
             </div>
+            {{ $lstSanPham->appends(request()->all())->links() }}
             </div>
         </div>
         </div>

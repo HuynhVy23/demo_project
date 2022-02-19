@@ -9,4 +9,8 @@ class LoaiSanPham extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function totalsanpham(){
+        return $this->hasMany(SanPham::class,'loai_san_pham_id','id');
+    }
 }

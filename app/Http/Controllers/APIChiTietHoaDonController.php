@@ -27,10 +27,11 @@ class APIChiTietHoaDonController extends Controller
     {
         $cthd = new CT_HoaDon;
         $cthd->fill([
-            'id' => $request->post('_id'),
+            'id_hoa_don' => $request->post('_id'),
             'id_san_pham' => $request->post('_id_san_pham'),
             'so_luong' => $request->post('_so_luong'),
-            'don_gia' => $request->post('_don_gia'),      
+            'don_gia' => $request->post('_don_gia'),
+            'tong' => $request->post('_tong'),
         ]);
         $cthd->save();
        

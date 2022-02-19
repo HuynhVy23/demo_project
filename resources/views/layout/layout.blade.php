@@ -32,7 +32,7 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href={{ route('Index') }}>
                         <span><img src=../images/logo.png alt="homepage" class="dark-logo" height="80" width="150" /></span>
                     </a>
                 </div>
@@ -78,7 +78,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a aria-expanded="false" href="{{ route('Invoice') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Invoice </span></a></li>
+                        <li><a aria-expanded="false" href="{{ route('invoice.index') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Invoice </span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('product.index') }}"><i class="fa fa-envira"></i><span class="hide-menu ">Product</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('catagory.index') }}"><i class="fa fa-leaf"></i><span class="hide-menu">Category</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('account.index') }}"><i class="fa fa-user"></i><span class="hide-menu">Account</span></a></li>

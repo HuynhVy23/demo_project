@@ -11,7 +11,11 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-        <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="{{ route('account.create') }}">Add New Staff</a>
+            <form action="{{ route('SearchAccount') }}" method="GET">
+                @csrf
+                <input type="text" name="key" placeholder="Email,name,phone">
+                <button type="submit"class="btn btn-info btn-rounded"><i class="fa fa-search"></i></button>
+            </form>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -40,6 +44,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $lstKhachHang->appends(request()->all())->links() }}
             </div>
         </div>
         </div>

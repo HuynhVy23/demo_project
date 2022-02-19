@@ -14,13 +14,15 @@ class CreateHoaDonsTable extends Migration
     public function up()
     {
         Schema::create('hoa_dons', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_tai_khoan');
+            $table->bigInteger('id');
+            $table->string('email');
             $table->string('ngay_lap');
             $table->string('dia_chi');
             $table->string('so_dien_thoai');
-            $table->string('ghi_chu');
+            $table->string('ghi_chu')->nullable();
             $table->string('tong_tien');
+            $table->integer('huy')->default(0);
+            $table->string('loai_hd')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
