@@ -78,7 +78,7 @@ class APIGioHangController extends Controller
      */
     public function show($id)
     {
-        $giohang=GioHang::select('gio_hangs.id','id_san_pham','so_luong_mua','don_gia_sp','hinh_anh','ten_san_pham')->join('san_phams','san_phams.id','=','gio_hangs.id_san_pham')->where('id_khach_hang','=',$id)->get();
+        $giohang=GioHang::select('gio_hangs.id','id_san_pham','so_luong_mua','don_gia','hinh_anh','ten_san_pham')->join('san_phams','san_phams.id','=','gio_hangs.id_san_pham')->where('id_khach_hang','=',$id)->get();
         return json_encode([
             'data'=>$giohang,
         ]);

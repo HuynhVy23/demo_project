@@ -19,10 +19,8 @@ class CreateHoaDonsTable extends Migration
             $table->string('ngay_lap');
             $table->string('dia_chi');
             $table->string('so_dien_thoai');
-            $table->string('ghi_chu')->nullable();
-            $table->string('tong_tien');
-            $table->integer('huy')->default(0);
-            $table->string('loai_hd')->default(1);
+            $table->int('loai_hd')->default(0);
+            $table->int('tong_tien');
             $table->timestamps();
             $table->softDeletes();
         });

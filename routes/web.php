@@ -21,15 +21,19 @@ use App\Http\Controllers\SanPhamController;
 Route::get('/', function () {
     return view('index');
 })->name('Index');
-// Route::group(['prefix'=>'invoice'],function(){
-//     Route::get('/',[HoaDonController::class,'index'])->name('Invoice');
-//     Route::get('/update',[HoaDonController::class,'edit'])->name('UpdateInvoice');
-//     Route::get('/detail', function () {
-//         return view('Invoice.InvoiceDetail');
-//     })->name('InvoiceDetail');
-// });
 
 Route::resource('invoice', HoaDonController::class);
+Route::group(['prefix'=>'Invoice'],function(){
+    Route::get('/huy/{id}',[ HoaDonController::class,'huy'])->name('Cancel');
+
+    Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
+});
+
+Route::group(['prefix'=>'receipt'],function(){
+    Route::get('/',[ HoaDonController::class,'hoadonnhap'])->name('Receipt');
+
+    Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
+});
 
 Route::resource('product', SanPhamController::class)->except('show');
 Route::group(['prefix'=>'product'],function(){
@@ -49,7 +53,7 @@ Route::group(['prefix'=>'account'],function(){
 
 Route::group(['prefix'=>'comment'],function(){
     Route::get('/', function () {
-        return view('demo');
+        return view('Comment');
     })->name('Comment');
 });
 

@@ -36,6 +36,12 @@
                 </select>
         </div>
             <div class="card-body">
+                <div class="row">
+                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                        <li class="nav-item"> <a class="nav-link"  href="{{ Request::url() }}?loai=0">ALL<span class="label label-rouded label-primary pull-right" style="margin-left:10px">{{ $all }}</span></a> </li>
+                        <li class="nav-item"> <a class="nav-link"  href="{{ Request::url() }}?loai=1">Stock <= 5<span class="label label-rouded label-primary pull-right" style="margin-left:10px">{{ $outstock }}</span></a> </li>
+                        
+                </div>
             <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">
                         <thead>
