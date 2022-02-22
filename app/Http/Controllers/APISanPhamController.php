@@ -74,13 +74,20 @@ class APISanPhamController extends Controller
 
     public function sanphammoi()
     {
-        $lstSanPham=SanPham::orderByDesc('created_at')->take(10)->get();
+        $lstSanPham=SanPham::orderByDesc('created_at')->take(6)->get();
         return $lstSanPham;
     }
 
     public function sanphambanchay()
     {
-        $lstSanPham=SanPham::orderByDesc('created_at')->take(10)->get();
+        $lstSanPham=SanPham::join('c_t__hoa_dons','c_t__hoa_dons.id_san_pham','=','san_phams.id')
+        ->selectRaw('san_phams.id,ten_san_pham,mo_ta,so_luong,don_gia,hinh_anh,loai_san_pham_id,sum(so_luong_ct) as ct')
+        ->groupBy('san_phams.id','ten_san_pham','mo_ta','so_luong','don_gia','hinh_anh','loai_san_pham_id')->orderByDesc('so_luong_ct')->take(6)->get();
+        return $lstSanPham;
+    }
+
+    public function sanphamnoibat(){
+        $lstSanPham=SanPham::orderByDesc('so_luong')->take(6)->get();
         return $lstSanPham;
     }
 }

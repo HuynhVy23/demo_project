@@ -6,6 +6,7 @@ use App\Http\Controllers\Catagory;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiSanPhamController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,25 +36,53 @@ Route::group(['prefix'=>'receipt'],function(){
     Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
 });
 
-Route::resource('product', SanPhamController::class)->except('show');
-Route::group(['prefix'=>'product'],function(){
-    Route::get('/search',[SanPhamController::class,'search'])->name('SearchProduct');
-});
-
-Route::resource('catagory', LoaiSanPhamController::class)->except('show');
-Route::group(['prefix'=>'catagory'],function(){
-    Route::post('/search',[LoaiSanPhamController::class,'search'])->name('SearchCategory');
-});
+// Route::group(['prefix'=>'invoice'],function(){
+//     Route::get('/',[HoaDonController::class,'index'])->name('Invoice');
+//     Route::get('/update',[HoaDonController::class,'edit'])->name('UpdateInvoice');
+//     Route::get('/detail', function () {
+//         return view('Invoice.InvoiceDetail');
+//     })->name('InvoiceDetail');
+// });
 
 
-Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
-Route::group(['prefix'=>'account'],function(){
-    Route::get('/search',[KhachHangController::class,'search'])->name('SearchAccount');
-});
 
-Route::group(['prefix'=>'comment'],function(){
+
+Route::get('login', [LoginController::class, 'showForm'])->name('login');
+Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+
+
+
+Route::middleware(['auth'])->group(function(){
+
     Route::get('/', function () {
-        return view('Comment');
-    })->name('Comment');
+        return view('index');
+    })->name('Index');
+
+    Route::resource('invoice', HoaDonController::class);
+
+    Route::resource('product', SanPhamController::class)->except('show');
+    Route::group(['prefix'=>'product'],function(){
+        Route::get('/search',[SanPhamController::class,'search'])->name('SearchProduct');
+    });
+
+    Route::resource('catagory', LoaiSanPhamController::class)->except('show');
+    Route::group(['prefix'=>'catagory'],function(){
+        Route::post('/search',[LoaiSanPhamController::class,'search'])->name('SearchCategory');
+    });
+
+
+    Route::resource('account', KhachHangController::class)->only(['index','create','store','edit','update','destroy']);
+    Route::group(['prefix'=>'account'],function(){
+        Route::get('/search',[KhachHangController::class,'search'])->name('SearchAccount');
+    });
+
+    Route::group(['prefix'=>'comment'],function(){
+        Route::get('/', function () {
+            return view('Comment');
+        })->name('Comment');
+    });
+
 });
+
+Route::get('logout',[LoginController::class, 'logOut'])->name('logout');
 

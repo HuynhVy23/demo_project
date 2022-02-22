@@ -12,6 +12,9 @@ class HoaDon extends Model
     use softDeletes;
 
     protected $guarded = [];
+    public function CTHD(){
+        return $this->hasMany('App\Models\CT_HoaDon');
+    }
 
     
 }

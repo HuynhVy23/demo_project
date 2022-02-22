@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GioHang;
 use App\Models\SanPham;
+use App\Models\KhachHang;
 use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
 
@@ -133,6 +134,13 @@ class APIGioHangController extends Controller
        }
        $giohang->save();
         return $giohang->so_luong_mua;
+    }
+
+    public function doneInvoice(Request $request){
+        //$giohang=GioHang::find($request->post('_id_khach_hang'));
+        $giohang=GioHang::where('id_khach_hang','=',$request->post('_id_khach_hang'))->delete();
+        $giohang_data=GioHang::where('id_khach_hang','=',$request->post('_id_khach_hang'))->get();
+        return $giohang_data;
     }
 
 }

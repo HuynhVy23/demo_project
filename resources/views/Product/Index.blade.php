@@ -15,7 +15,7 @@
         <div class="row" style="padding: 15px">
         <form action="{{ route('SearchProduct') }}" method="GET">
             @csrf
-            <input type="text" name="ten_san_pham" placeholder="Name ">
+            <input type="text" name="ten_san_pham" placeholder="Name">
             <input type="text" name="mo_ta" placeholder="Description">
             <select name="ma_loai">
                 <option value="">Select category</option>
@@ -27,20 +27,20 @@
             <input type="text" name="gia_cao" placeholder="To(price)" >
             <button type="submit"class="btn btn-info btn-rounded"><i class="fa fa-search"></i></button>
         </form>
-                <select name="sort" id="sort" style="position:absolute;right:50px">
-                    <option value="">Select </option>
-                    <option value="{{ Request::url() }}?sort=giatang">Giá tăng dần</option>
-                    <option value="{{ Request::url() }}?sort=giagiam">Giá giảm dần</option>
-                    <option value="{{ Request::url() }}?sort=az">A->Z</option>
-                    <option value="{{ Request::url() }}?sort=za">Z->A</option>
-                </select>
+                
         </div>
             <div class="card-body">
                 <div class="row">
                     <ul class="nav nav-tabs profile-tab" role="tablist">
                         <li class="nav-item"> <a class="nav-link"  href="{{ Request::url() }}?loai=0">ALL<span class="label label-rouded label-primary pull-right" style="margin-left:10px">{{ $all }}</span></a> </li>
                         <li class="nav-item"> <a class="nav-link"  href="{{ Request::url() }}?loai=1">Stock <= 5<span class="label label-rouded label-primary pull-right" style="margin-left:10px">{{ $outstock }}</span></a> </li>
-                        
+                        <select name="sort" id="sort" style="position:absolute;right:50px">
+                            <option value="">Select </option>
+                            <option value="{{ Request::url() }}?sort=giatang">Giá tăng dần</option>
+                            <option value="{{ Request::url() }}?sort=giagiam">Giá giảm dần</option>
+                            <option value="{{ Request::url() }}?sort=az">A->Z</option>
+                            <option value="{{ Request::url() }}?sort=za">Z->A</option>
+                        </select>
                 </div>
             <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">

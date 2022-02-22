@@ -51,19 +51,18 @@
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                         <!-- đăng nhập -->
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted  " href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <!-- avatar -->
-                            <img src="" alt="user" class="profile-pic" />
+                            <img src="../images/logohoa.png" alt="" class="profile-pic" /><br>
                             <!-- tên user -->
-                            <span></span>
+                            <span class="middle">Admin</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                             
                                 <ul class="dropdown-user">
                                     <!-- đăng xuất -->
-                                    <li><a href=""><i class="fa fa-power-off"></i> Log out</a></li>
+                                    <li><a href="{{ route('logout') }}"><i class="fa fa-power-off"></i> Log out</a></li>
                                 </ul>
-                                
                             </div>
                         </li>
                     </ul>
@@ -78,6 +77,8 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
+                        <li class="nav-devider">
+                        </li>
                         <li class="nav-devider"></li>
                         <li><a aria-expanded="false" href="{{ route('invoice.index') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Invoice </span></a></li>
                         <li><a aria-expanded="false" href="{{ route('Receipt') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Good Receipt</span></a></li>
