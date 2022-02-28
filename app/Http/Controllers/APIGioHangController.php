@@ -137,10 +137,22 @@ class APIGioHangController extends Controller
     }
 
     public function doneInvoice(Request $request){
-        //$giohang=GioHang::find($request->post('_id_khach_hang'));
         $giohang=GioHang::where('id_khach_hang','=',$request->post('_id_khach_hang'))->delete();
         $giohang_data=GioHang::where('id_khach_hang','=',$request->post('_id_khach_hang'))->get();
         return $giohang_data;
+    }
+
+    public function capNhatSoLuong(Request $request){
+        $giohang = GioHang::where('id_khach_hang','=',$request->post('_id_khach_hang'))->get();
+        $a=array([]);
+        for ($i=0; $i < $giohang->count() ; $i++) { 
+            $soluong_first = SanPham::where('id','=',$giohang[$i]->id_san_pham)->first();
+            $soluong_first->so_luong = $soluong_first->so_luong - $giohang[$i]->so_luong_mua;
+            $soluong_first->save();
+            
+        }
+        return 'true';
+
     }
 
 }

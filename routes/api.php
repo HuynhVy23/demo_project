@@ -39,10 +39,12 @@ Route::apiResource('gioHang',APIGioHangController::class);
 Route::group(['prefix'=>'giohang'],function(){
     Route::post('/',[APIGioHangController::class,'quanlity']);
     Route::post('/doneInvoice',[APIGioHangController::class,'doneInvoice']);
+    Route::post('/capNhat',[APIGioHangController::class,'capNhatSoLuong']);
 });
 
 
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
+Route::post('khachhang/capNhat',[APIKhachHangController::class,'capNhat']);
 Route::get('sp/ds',[APISanPhamController::class,'layds']);
 Route::post('login',[APIKhachHangController::class,'login']);
 

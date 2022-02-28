@@ -50,7 +50,6 @@ class KhachHangController extends Controller
     {
         $khachHang = new KhachHang;
         $khachHang->fill([
-            'ten_dang_nhap' => $request->input('Username'),
             'mat_khau' => $request->input('MatKhau'),
             'ho_ten' => $request->input('HoTen'),
             'so_dien_thoai' => $request->input('DienThoai'),
@@ -107,7 +106,6 @@ class KhachHangController extends Controller
         }
         
         $khachHang->fill([
-            'ten_dang_nhap' => $request->input('Username'),
             'mat_khau' => $request->input('MatKhau'),
             'ho_ten' => $request->input('HoTen'),
             'so_dien_thoai' => $request->input('DienThoai'),
