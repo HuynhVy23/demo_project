@@ -48,10 +48,7 @@ class APIChiTietHoaDonController extends Controller
         $cthd=CT_HoaDon::select('ten_san_pham','hinh_anh','so_luong_ct','don_gia_ct')
         ->join('san_phams','san_phams.id','=','c_t__hoa_dons.id_san_pham')
         ->where('id_hoa_don','=',$request->post('_id_hoa_don'))->get();
-        return json_encode([
-            'data'=>$cthd,
-            'post'=>$request->post('_id_hoa_don')
-        ]);
+        return $cthd;
     }
 
     /**

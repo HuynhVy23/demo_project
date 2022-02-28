@@ -139,4 +139,11 @@ class APIHoaDonController extends Controller
     {
         //
     }
+    public function yeucauhuy($id)
+    {
+        $hoadon=HoaDon::find($id);
+        $hoadon->loai_hd=5;
+        $hoadon->save();
+    }
+
 }

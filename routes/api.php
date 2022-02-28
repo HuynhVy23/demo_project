@@ -52,6 +52,7 @@ Route::post('/newInvoice' , [APIHoaDonController::class , 'store']);
 Route::post('/getInvoiceId' , [APIHoaDonController::class , 'getInvoiceId']);
 Route::get('/show/{id}' , [APIHoaDonController::class , 'show']);
 Route::post('/getListInvoiceByAccountId',  [APIHoaDonController::class , 'getListInvoice']);
+Route::get('/huy/{id}' , [APIHoaDonController::class , 'yeucauhuy']);
 });
 
 Route::group(['prefix'=>'invoiceDetail'],function(){
