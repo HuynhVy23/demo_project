@@ -62,7 +62,7 @@
                                 <td>{{ $sp->ten_san_pham }}</td>
                                 <td>{{ $sp->mo_ta }}</td>
                                 <td>{{ $sp->loaiSanPham->ten_loai }}</td>
-                                <td>{{ $sp->don_gia }}</td>
+                                <td>{{ number_format( $sp->don_gia , 0, ',', '.') . " VND" }}</td>
                                 <td>{{ $sp->so_luong }}</td>
                                 <td><img src="{{ $sp->hinh_anh }}" width="100px" height="100px"> </td>
                                 <td><a class="btn btn-info btn-rounded" href="{{ route('product.edit',$sp->id) }}"> <i class="fa fa-edit"></a></td>

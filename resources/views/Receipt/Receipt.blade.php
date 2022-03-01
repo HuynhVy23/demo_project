@@ -10,7 +10,7 @@
     <div class="col-12">
         <div class="card">
         <div class="button-list">
-            <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="">Add New Good Receipt</a>
+            <a class="btn btn-warning btn-rounded m-b-10 m-l-5" href="{{ route('AddReceipt') }}">Add New Good Receipt</a>
             <div class="card-body">
                 <div class="table-responsive m-t-40">
                     <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -33,11 +33,8 @@
                                 <td>{{ $hd->dia_chi }}</td>
                                 <td>{{ $hd->so_dien_thoai }}</td>
                                 <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->tong_tien }}</td>
-                                @if ($hd->loai_hd!=3&&$hd->loai_hd!=4&&$hd->loai_hd!=5)
-                                <td><a class="btn btn-warning btn-rounded" href="{{ route('invoice.edit',$hd->id) }}"><i class="fa fa-check"></i></a></td>
-                                @endif
-                                <td><a class="btn btn-warning btn-rounded" href="{{ route('invoice.show',$hd->id) }}">Detail</a></td>
+                                <td>{{ number_format( $hd->tong_tien, 0, ',', '.') . " VND" }}</td>
+                                <td><a class="btn btn-warning btn-rounded" href="{{ route('ShowReceipt',$hd->id) }}">Detail</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

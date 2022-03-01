@@ -184,9 +184,10 @@ class SanPhamController extends Controller
         }
         
         $lstLoaiSanPham = LoaiSanPham::all();
-        
+        $all=SanPham::count();
+        $outstock=SanPham::where('so_luong','<=',5)->count();
         $pagination = $lstSanPham->appends(array('value' => 'key'));
-        return view('Product.Index', ['lstSanPham' => $lstSanPham, 'lstLoaiSanPham' => $lstLoaiSanPham,'pagination' => $pagination]);
+        return view('Product.Index', ['lstSanPham' => $lstSanPham, 'lstLoaiSanPham' => $lstLoaiSanPham,'pagination' => $pagination,'all'=>$all,'outstock'=>$outstock]);
     }
 
 }

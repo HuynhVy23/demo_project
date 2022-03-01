@@ -21,7 +21,7 @@
                                 @endforeach
                             </select></br></br>
                             Price : <input type="text" name="don_gia" value="{{ $sanPham->don_gia }}"/></br></br>
-                            Stock : <input type="text" name="so_luong" value="{{ $sanPham->so_luong }}" /></br></br>
+                            Stock : <input type="text" name="so_luong" value="{{ $sanPham->so_luong }}" readonly /></br></br>
                             <label for="file">Image : </label>
                             <input type="file" name="hinh_anh" id="file"/>
                             <br/>

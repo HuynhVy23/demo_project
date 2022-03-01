@@ -47,7 +47,7 @@
                                 <td>{{ $hd->dia_chi }}</td>
                                 <td>{{ $hd->so_dien_thoai }}</td>
                                 <td>{{ $hd->ngay_lap }}</td>
-                                <td>{{ $hd->tong_tien }}</td>
+                                <td>{{ number_format( $hd->tong_tien , 0, ',', '.') . " VND" }}</td>
                                 @if ($hd->loai_hd!=3&&$hd->loai_hd!=4&&$hd->loai_hd!=5)
                                 <td><a class="btn btn-warning btn-rounded" href="{{ route('invoice.edit',$hd->id) }}"><i class="fa fa-check"></i></a></td>
                                 @endif
