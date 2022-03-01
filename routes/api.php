@@ -32,6 +32,7 @@ Route::group(['prefix'=>'sanpham'],function(){
     Route::get('trangchu',[APISanPhamController::class,'trangchu']);
     Route::get('sanphammoi',[APISanPhamController::class,'sanphammoi']);
     Route::get('sanphambanchay',[APISanPhamController::class,'sanphambanchay']);
+    Route::get('sanphamnoibat',[APISanPhamController::class,'sanphamnoibat']);
 });
 Route::apiResource('trangThai',APITrangThaiController::class);
 Route::apiResource('khachHang',APIKhachHangController::class);
@@ -44,12 +45,18 @@ Route::group(['prefix'=>'giohang'],function(){
 
 
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
-Route::post('khachhang/capNhat',[APIKhachHangController::class,'capNhat']);
-Route::get('sp/ds',[APISanPhamController::class,'layds']);
 Route::post('login',[APIKhachHangController::class,'login']);
+Route::get('sp/ds',[APISanPhamController::class,'layds']);
 
-Route::get('invoice/getInvoiceList' , [APIHoaDonController::class , 'index']);
-Route::post('invoice/newInvoice' , [APIHoaDonController::class , 'store']);
-Route::post('invoice/getInvoiceId' , [APIHoaDonController::class , 'getInvoiceId']);
-Route::post('invoiceDetail/newInvoiceDetail' , [APIChiTietHoaDonController::class ,'store'] );
-Route::post('invoice/getListInvoiceByAccountId',  [APIHoaDonController::class , 'getListInvoice']);
+Route::group(['prefix'=>'invoice'],function(){
+    Route::get('/getInvoiceList' , [APIHoaDonController::class , 'index']);
+Route::post('/newInvoice' , [APIHoaDonController::class , 'store']);
+Route::post('/getInvoiceId' , [APIHoaDonController::class , 'getInvoiceId']);
+Route::get('/show/{id}' , [APIHoaDonController::class , 'show']);
+Route::post('/getListInvoiceByAccountId',  [APIHoaDonController::class , 'getListInvoice']);
+});
+
+Route::group(['prefix'=>'invoiceDetail'],function(){
+    Route::post('/newInvoiceDetail' , [APIChiTietHoaDonController::class ,'store'] );
+    Route::post('/show' , [APIChiTietHoaDonController::class ,'show'] );
+});

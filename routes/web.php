@@ -19,6 +19,22 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+Route::get('/', function () {
+    return view('index');
+})->name('Index');
+
+Route::resource('invoice', HoaDonController::class);
+Route::group(['prefix'=>'Invoice'],function(){
+    Route::get('/huy/{id}',[ HoaDonController::class,'huy'])->name('Cancel');
+
+    Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
+});
+
+Route::group(['prefix'=>'receipt'],function(){
+    Route::get('/',[ HoaDonController::class,'hoadonnhap'])->name('Receipt');
+
+    Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
+});
 
 // Route::group(['prefix'=>'invoice'],function(){
 //     Route::get('/',[HoaDonController::class,'index'])->name('Invoice');

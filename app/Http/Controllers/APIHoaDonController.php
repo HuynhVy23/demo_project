@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\HoaDon;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use LengthException;
 
 class APIHoaDonController extends Controller
 {
@@ -79,9 +81,6 @@ class APIHoaDonController extends Controller
         {
             $second = '0'.$second;
         }
-       
-        
-        
         $id = $year.$month.$day.$hour.$minute.$second;
         $HoaDon = new HoaDon;
         $HoaDon->fill([
@@ -101,9 +100,21 @@ class APIHoaDonController extends Controller
      * @param  \App\Models\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(invoice $invoice)
+    public function show($id)
     {
-        //
+        $lstHoaDon=HoaDon::where('email','=',$id)->get();
+        $lstSanPham=array ([]);
+        for ($i=0; $i < $lstHoaDon->count(); $i++) { 
+            $a=HoaDon::select('hoa_dons.id','email','ngay_lap','dia_chi','so_dien_thoai','tong_tien','loai_hd','ten_san_pham','so_luong_ct','don_gia_ct','hinh_anh')
+            ->join('c_t__hoa_dons','c_t__hoa_dons.id_hoa_don','=','hoa_dons.id')
+            ->join('san_phams','san_phams.id','=','c_t__hoa_dons.id_san_pham')
+            ->where('hoa_dons.id','=',$lstHoaDon[$i]->id)->first();
+            $lstSanPham[$i]=$a;
+        }
+        
+        return json_encode([
+            'data'=>$lstSanPham
+        ]);
     }
 
     /**
@@ -113,7 +124,7 @@ class APIHoaDonController extends Controller
      * @param  \App\Models\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, invoice $invoice)
+    public function update(Request $request)
     {
         //
     }
@@ -124,7 +135,7 @@ class APIHoaDonController extends Controller
      * @param  \App\Models\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(invoice $invoice)
+    public function destroy()
     {
         //
     }

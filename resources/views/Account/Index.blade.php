@@ -38,7 +38,12 @@
                                 <td>{{ $kh->so_dien_thoai }}</td>
                                 <td>{{ $kh->dia_chi }}</td>
                                 <td><img src="{{ $kh->hinh_anh }}" width="100px" height="100px"> </td>
-                                <td><a class="btn btn-info btn-rounded" href="{{ route('account.edit',$kh->id)}}"> Update</a></td>
+                                @if ($kh->khoa==1)
+                                <td><a class="btn btn-danger btn-rounded" href="{{ route('account.edit',$kh->id)}}"> <i class="fa fa-lock"></i></a></td>
+                                @else
+                                <td><a class="btn btn-info btn-rounded" href="{{ route('account.edit',$kh->id)}}"> <i class="fa fa-lock"></i></a></td>
+                                @endif
+                                
                             </tr>
                             @endforeach
                         </tbody>

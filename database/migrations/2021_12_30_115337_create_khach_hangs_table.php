@@ -23,6 +23,7 @@ class CreateKhachHangsTable extends Migration
             $table->integer('gioi_tinh');
             $table->date('ngay_sinh');
             $table->string('hinh_anh')->nullable();
+            $table->integer('khoa');
             $table->timestamps();
             $table->softDeletes();
         });

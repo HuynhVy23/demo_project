@@ -43,9 +43,15 @@ class APIChiTietHoaDonController extends Controller
      * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function show(invoice_detail $invoice_detail)
+    public function show(Request $request)
     {
-        //
+        $cthd=CT_HoaDon::select('ten_san_pham','hinh_anh','so_luong_ct','don_gia_ct')
+        ->join('san_phams','san_phams.id','=','c_t__hoa_dons.id_san_pham')
+        ->where('id_hoa_don','=',$request->post('_id_hoa_don'))->get();
+        return json_encode([
+            'data'=>$cthd,
+            'post'=>$request->post('_id_hoa_don')
+        ]);
     }
 
     /**
@@ -55,7 +61,7 @@ class APIChiTietHoaDonController extends Controller
      * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, invoice_detail $invoice_detail)
+    public function update(Request $request)
     {
         //
     }
@@ -66,7 +72,7 @@ class APIChiTietHoaDonController extends Controller
      * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(invoice_detail $invoice_detail)
+    public function destroy()
     {
         //
     }

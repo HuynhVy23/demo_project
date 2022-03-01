@@ -85,9 +85,13 @@ class KhachHangController extends Controller
     public function edit($id)
     {
         $khachHang=KhachHang::find($id);
-        $this->fixImage($khachHang);
-        
-        return view('Account.Update',['khachHang'=>$khachHang]);
+        if($khachHang->khoa==1){
+            $khachHang->khoa=0;
+        }else{
+            $khachHang->khoa=1;
+        }
+        $khachHang->save();
+        return Redirect::route('account.index');
     }
 
     /**
@@ -99,23 +103,6 @@ class KhachHangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $khachHang=KhachHang::find($id);
-
-        if($request->hasFile('HinhAnh')){
-            $khachHang->hinh_anh = $request->file('HinhAnh')->store('img/account/'.$khachHang->id,'public');
-        }
-        
-        $khachHang->fill([
-            'mat_khau' => $request->input('MatKhau'),
-            'ho_ten' => $request->input('HoTen'),
-            'so_dien_thoai' => $request->input('DienThoai'),
-            'email' => $request->input('Email'),
-            'dia_chi' => $request->input('DiaChi'),
-        ]);
-        $khachHang->save();
-        
-        
-        return Redirect::route('account.index',['khachHang'=>$khachHang]);
     }
 
     /**

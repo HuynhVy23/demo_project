@@ -39,12 +39,22 @@ class SanPhamController extends Controller
             $column='ten_san_pham';
             $type='desc';
         }
-        $lstSanPham = SanPham::orderBy($column,$type)->paginate(5);
+
+        if(!isset($_GET['loai'])||$_GET['loai']==null){
+            $lstSanPham = SanPham::orderBy($column,$type)->paginate(5);
+        
+        }else if($_GET['loai']==1){
+            $lstSanPham = SanPham::where('so_luong','<=',5)->orderBy($column,$type)->paginate(5); 
+        }else {
+            $lstSanPham = SanPham::orderBy($column,$type)->paginate(5);
+        }
         foreach ($lstSanPham as $sp) {
             $this->fixImage($sp);
         }
+        $all=SanPham::count();
+        $outstock=SanPham::where('so_luong','<=',5)->count();
         $lstLoaiSanPham = LoaiSanPham::all();
-        return view('Product.Index', ['lstSanPham' => $lstSanPham, 'lstLoaiSanPham' => $lstLoaiSanPham]);
+        return view('Product.Index', ['lstSanPham' => $lstSanPham, 'lstLoaiSanPham' => $lstLoaiSanPham,'all'=>$all,'outstock'=>$outstock]);
     }
 
     /**

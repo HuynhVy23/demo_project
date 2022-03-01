@@ -77,9 +77,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
+                        <li class="nav-devider">
+                        </li>
                         <li class="nav-devider"></li>
                         <li><a aria-expanded="false" href="{{ route('invoice.index') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Invoice </span></a></li>
-                        <li ><a aria-expanded="false" href="{{ route('product.index') }}"><i class="fa fa-envira"></i><span class="hide-menu ">Product</span></a></li>
+                        <li><a aria-expanded="false" href="{{ route('Receipt') }}"><i class="fa fa-file-text"></i><span class="hide-menu">Good Receipt</span></a></li>
+                        <li ><a aria-expanded="false" href="{{ route('product.index') }}"><i class="fa fa-pagelines "></i><span class="hide-menu ">Product</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('catagory.index') }}"><i class="fa fa-leaf"></i><span class="hide-menu">Category</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('account.index') }}"><i class="fa fa-user"></i><span class="hide-menu">Account</span></a></li>
                         <li ><a aria-expanded="false" href="{{ route('Comment') }}"><i class="fa fa-comment"></i><span class="hide-menu">Comment</span></a></li>
@@ -96,7 +99,7 @@
                 <!-- Start Page Content -->
 								@yield('main')
 					</div>
-                    <footer class="footer"> Design by </a></footer>
+                    <footer class="footer"> Design by Tran Thi Tuyet Nhu, Huynh Thao Vy</a></footer>
         </div>
     </div>
     <!-- End Wrapper -->

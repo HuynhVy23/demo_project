@@ -15,7 +15,7 @@
         <div class="row" style="padding: 15px">
         <form action="{{ route('SearchCategory') }}" method="POST">
             @csrf
-            <input type="text" name="ten_loai">
+            <input type="text" name="ten_loai" placeholder="Name">
             <button type="submit"class="btn btn-info btn-rounded">Search</button>
         </form>
         <select name="sort" id="sort" style="position:absolute;right:50px">
