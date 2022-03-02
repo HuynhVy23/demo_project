@@ -33,7 +33,7 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href={{ route('Index') }}>
-                        <span><img src="../images/logo.png" alt="homepage" class="dark-logo" height="80" width="150" /></span>
+                        <span><img src="{{ url('images/logo.png') }}" alt="homepage" class="dark-logo" height="80" width="150" /></span>
                     </a>
                 </div>
                 <!-- End Logo -->

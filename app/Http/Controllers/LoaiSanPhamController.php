@@ -58,6 +58,11 @@ class LoaiSanPhamController extends Controller
      */
     public function store(Request $request)
     {
+        
+        if($request->ten_loai==null){
+            $tenloai='Please enter category name';
+            return view('Catagory.Add',['tenloai'=>$tenloai]);
+        }
         $loaiSanPham=new LoaiSanPham;
         $loaiSanPham->fill([
             'ten_loai'=>$request->input('ten_loai'),
@@ -99,6 +104,12 @@ class LoaiSanPhamController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->ten_loai==null){
+            $error='Please enter category name';
+            $loaiSanPham=LoaiSanPham::find($id);
+        $this->fixImage($loaiSanPham);
+        return view('Catagory.Update',['loaiSanPham'=>$loaiSanPham,'error'=>$error]);
+        }
         $loaiSanPham=LoaiSanPham::find($id);
         $loaiSanPham->fill([
             'ten_loai'=>$request->input('ten_loai'),

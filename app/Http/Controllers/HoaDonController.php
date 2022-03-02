@@ -162,6 +162,15 @@ class HoaDonController extends Controller
 
     public function xulihdnhap(Request $request)
     {
+        if($request->so_luong==null||$request->don_gia==null){
+            $error='Please enter price and quanlity';
+            $sanpham=SanPham::all();
+        return view('Receipt.AddReceipt',['sanpham'=>$sanpham,'error'=>$error]);
+        }elseif($request->so_luong==0||$request->don_gia==0){
+            $error='Price and quanlity must be greater than 0';
+            $sanpham=SanPham::all();
+        return view('Receipt.AddReceipt',['sanpham'=>$sanpham,'error'=>$error]);
+        }
         $year =  Carbon::now('Asia/Ho_Chi_Minh')->year;
         $month = (int)Carbon::now('Asia/Ho_Chi_Minh')->month;
         $hour = Carbon::now('Asia/Ho_Chi_Minh')->hour;

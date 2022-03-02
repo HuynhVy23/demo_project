@@ -76,6 +76,25 @@ class SanPhamController extends Controller
      */
     public function store(Request $request)
     {
+        $tensp='';
+        $mota='';
+        $dongia='';
+        if($request->ten_san_pham==null){ 
+            $tensp='Please enter product name';
+        }
+        if($request->mo_ta==null){
+            $mota='Please enter description';
+        }
+        if($request->don_gia==null){
+            $dongia='Please enter price';
+        }
+        if($request->don_gia==0){
+            $dongia='Price must be greater than 0';
+        }
+        if($tensp!=null||$mota!=null||$dongia!=null){
+            $lstLoaiSanPham = LoaiSanPham::all();
+            return view('Product.Add', ['lstLoaiSanPham' => $lstLoaiSanPham,'tensp'=>$tensp,'mota'=>$mota,'dongia'=>$dongia]);
+        }
         $sanPham = new SanPham();
         $sanPham->fill([
             'ten_san_pham' => $request->input('ten_san_pham'),
@@ -83,11 +102,13 @@ class SanPhamController extends Controller
             'so_luong' => $request->input('so_luong'),
             'don_gia' => $request->input('don_gia'),
             'hinh_anh' => '',
-            'loai_san_pham_id' => $request->input('ma_loai'),
+            'loai_san_pham_id' => $request->input('ma_loai')?$request->input('ma_loai'):1,
         ]);
         $sanPham->save();
         if ($request->hasFile('hinh_anh')) {
             $sanPham->hinh_anh = $request->file('hinh_anh')->store('img/product/' . $sanPham->id, 'public');
+        }else{
+            $sanPham->hinh_anh = '/img/product/auto.jpg';
         }
         $sanPham->save();
         return Redirect::route('product.index');
@@ -127,6 +148,13 @@ class SanPhamController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->ten_san_pham==null||$request->mo_ta==null||$request->don_gia==null||$request->don_gia==0){
+            $error='Imported incorrect data, so the update failed';
+            $sanPham = SanPham::find($id);
+        $lstLoaiSanPham = LoaiSanPham::all();
+        $this->fixImage($sanPham);
+        return view('Product.Update', ['sanPham' => $sanPham, 'lstLoaiSanPham' => $lstLoaiSanPham,'error'=>$error]);
+        }
         $sanPham = SanPham::find($id);
         if ($request->hasFile('hinh_anh')) {
             $sanPham->hinh_anh = $request->file('hinh_anh')->store('img/product/' . $sanPham->id, 'public');
@@ -134,7 +162,6 @@ class SanPhamController extends Controller
         $sanPham->fill([
             'ten_san_pham' => $request->input('ten_san_pham'),
             'mo_ta' => $request->input('mo_ta'),
-            'so_luong' => $request->input('so_luong'),
             'don_gia' => $request->input('don_gia'),
             'loai_san_pham_id' => $request->input('ma_loai'),
         ]);

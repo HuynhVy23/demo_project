@@ -30,9 +30,12 @@
                                     <option value="{{ $sp->id }}">{{ $sp->ten_san_pham }}</option>
                                     @endforeach
                                 </select></td>
-                                <td><input class="form-control" type="text" name="don_gia"></td>
-                                <td><input class="form-control" type="text" name="so_luong"></td>
+                                <td><input class="form-control" type="text" name="don_gia"onkeypress='return event.charCode>=48 && event.charCode<=57'></td>
+                                <td><input class="form-control" type="text" name="so_luong"onkeypress='return event.charCode>=48 && event.charCode<=57'></td>
                                <td><button type="submit" class="btn btn-info" value="Submit">Submit</button></td>
+                               @if (!empty($error))
+            <em style="color: red"> {{ $error }}</em>
+            @endif
                             </tr>
                             </tbody>
                        
