@@ -45,6 +45,7 @@ Route::group(['prefix'=>'giohang'],function(){
 
 
 Route::post('khachhang/checkEmail',[APIKhachHangController::class,'checkEmail']);
+Route::post('khachhang/capNhat',[APIKhachHangController::class,'capNhat']);
 Route::post('login',[APIKhachHangController::class,'login']);
 Route::get('sp/ds',[APISanPhamController::class,'layds']);
 

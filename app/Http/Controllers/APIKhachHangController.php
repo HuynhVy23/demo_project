@@ -29,7 +29,6 @@ class APIKhachHangController extends Controller
     {
         $kh=new KhachHang();
         $kh->fill([
-            'ten_dang_nhap'=>$request->post('_tendangnhap'),
             'email'=>$request->post('_email'),
             'mat_khau'=>$request->post('_matkhau'),
             'ho_ten'=>$request->post('_hoten'),
