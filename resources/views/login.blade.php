@@ -58,7 +58,7 @@
                 @csrf
                 <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email"><br><br>
                 <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password">
-                <p style="color:red">@if ($errors->has('email')) <?php echo "Tài khoản không hợp lệ";?><br>@endif</p>
+                <p style="color:red">@if ($errors->has('email')) <?php echo "Không hợp lệ";?><br>@endif</p>
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
