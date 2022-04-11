@@ -1,3 +1,4 @@
+
 @extends('layout.layout')
 @section('container')
 <div class="row page-titles">
@@ -50,13 +51,6 @@
                     </table>
                    
                 </div>
-                @if ($cthoadon[0]->loai_hd!=3&&$cthoadon[0]->loai_hd!=4)
-                <a class="btn btn-warning btn-rounded" href="{{ route('invoice.edit',$cthoadon[0]->id_hoa_don) }}"><i class="fa fa-check"></i></a>
-                @endif
-                @if ($cthoadon[0]->loai_hd==5)
-                                                                    
-                                                                    <a class="btn btn-warning btn-rounded" href="{{ route('Cancel',$cthoadon[0]->id_hoa_don) }}"><i class="fa fa-close"></i></a>
-                                                                    @endif  
             </div>
         </div>
     </div>

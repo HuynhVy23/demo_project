@@ -20,12 +20,15 @@
                                     <option value="{{ $item->id }}" @if($item->id==$sanPham->loai_san_pham_id) selected @endif>{{ $item->ten_loai }}</option>
                                 @endforeach
                             </select></br></br>
-                            Price : <input type="text" name="don_gia" value="{{ $sanPham->don_gia }}"/></br></br>
-                            Stock : <input type="text" name="so_luong" value="{{ $sanPham->so_luong }}" /></br></br>
+                            Price : <input type="text" name="don_gia" value="{{ $sanPham->don_gia }}" onkeypress='return event.charCode>=48 && event.charCode<=57'/></br></br>
+                            Stock : <input type="text" name="so_luong" value="{{ $sanPham->so_luong }}" readonly /></br></br>
                             <label for="file">Image : </label>
                             <input type="file" name="hinh_anh" id="file"/>
                             <br/>
                             <input class="btn btn-primary btn-rounded m-b-10 m-l-5" type="submit" name="submit" value="Cập Nhật"/>
+                            @if (!empty($error))
+            <em style="color: red"> {{ $error }}</em>
+            @endif
                         </form>
                         </div>
                     </div>

@@ -13,7 +13,9 @@
         <div class="button-list">
         <form action="{{ route('catagory.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-Name : <pre></pre><input type="text" name="ten_loai"/><em style="color:tomato">*</em></br></br>
+Name : <pre></pre><input type="text" name="ten_loai"/>@if (!empty($tenloai))
+<em style="color: red"> {{ $tenloai }}</em>
+@endif</br></br>
 <input class="btn btn-success" type="submit" name="submit" value="Submit"/></br></br>
 <label style="color: red;"></label>
         </form>

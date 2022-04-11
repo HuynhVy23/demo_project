@@ -32,17 +32,13 @@ Route::group(['prefix'=>'Invoice'],function(){
 
 Route::group(['prefix'=>'receipt'],function(){
     Route::get('/',[ HoaDonController::class,'hoadonnhap'])->name('Receipt');
-
-    Route::get('/search',[HoaDonController::class,'timkiem'])->name('SearchInvoice');
+    Route::get('/add',[HoaDonController::class,'themhdnhap'])->name('AddReceipt');
+    Route::post('/xuli',[HoaDonController::class,'xulihdnhap'])->name('Add');
 });
 
-// Route::group(['prefix'=>'invoice'],function(){
-//     Route::get('/',[HoaDonController::class,'index'])->name('Invoice');
-//     Route::get('/update',[HoaDonController::class,'edit'])->name('UpdateInvoice');
-//     Route::get('/detail', function () {
-//         return view('Invoice.InvoiceDetail');
-//     })->name('InvoiceDetail');
-// });
+Route::group(['prefix'=>'detailreceipt'],function(){
+    Route::get('/{id}',[ HoaDonController::class,'chitietnhap'])->name('ShowReceipt');
+});
 
 
 

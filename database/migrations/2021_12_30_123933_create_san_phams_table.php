@@ -19,8 +19,8 @@ class CreateSanPhamsTable extends Migration
             $table->string('mo_ta');
             $table->integer('so_luong');
             $table->integer('don_gia');
-            $table->string('hinh_anh');
-            $table->integer('loai_san_pham_id');
+            $table->string('hinh_anh')->nullable();
+            $table->integer('loai_san_pham_id')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
